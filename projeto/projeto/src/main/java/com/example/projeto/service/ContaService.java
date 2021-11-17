@@ -39,6 +39,7 @@ public class ContaService {
 		newObj.setAgencia(obj.getAgencia());
 		newObj.setSaldo(obj.getSaldo());
 		newObj.setDataAbertura(obj.getDataAbertura());
+		newObj.setId_cliente(obj.getId_cliente());
 		return repository.save(newObj);
 	}
 	

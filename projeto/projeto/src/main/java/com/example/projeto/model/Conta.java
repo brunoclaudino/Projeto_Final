@@ -25,18 +25,20 @@ public class Conta implements Serializable{
 	private Integer agencia;
 	private Double saldo;
 	private String dataAbertura;
+	private Integer id_cliente;
 	
 	public Conta() {
 		super();
 	}
 
-	public Conta(Integer id, Integer numero, Integer agencia, Double saldo, String dataAbertura) {
+	public Conta(Integer id, Integer numero, Integer agencia, Double saldo, String dataAbertura, Integer id_cliente) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.agencia = agencia;
 		this.saldo = saldo;
 		this.dataAbertura = dataAbertura;
+		this.id_cliente = id_cliente;
 	}
 
 	public Integer getId() {
@@ -77,6 +79,14 @@ public class Conta implements Serializable{
 
 	public void setDataAbertura(String dataAbertura) {
 		this.dataAbertura = dataAbertura;
+	}
+	
+	public Integer getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(Integer id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	@Override
