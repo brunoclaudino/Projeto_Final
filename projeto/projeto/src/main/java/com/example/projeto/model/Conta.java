@@ -3,12 +3,10 @@ package com.example.projeto.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-//import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.Table;
 
 
 //@Table(name = "conta")  //não sei se precisa
@@ -24,7 +22,7 @@ public class Conta implements Serializable{
 	private Integer numero;
 	private Integer agencia;
 	private Double saldo;
-	private String dataAbertura;
+	private String data_abertura;
 	private Integer id_cliente;
 	
 	public Conta() {
@@ -37,7 +35,7 @@ public class Conta implements Serializable{
 		this.numero = numero;
 		this.agencia = agencia;
 		this.saldo = saldo;
-		this.dataAbertura = dataAbertura;
+		this.data_abertura = dataAbertura;
 		this.id_cliente = id_cliente;
 	}
 
@@ -74,11 +72,11 @@ public class Conta implements Serializable{
 	}
 
 	public String getDataAbertura() {
-		return dataAbertura;
+		return data_abertura;
 	}
 
 	public void setDataAbertura(String dataAbertura) {
-		this.dataAbertura = dataAbertura;
+		this.data_abertura = dataAbertura;
 	}
 	
 	public Integer getId_cliente() {
