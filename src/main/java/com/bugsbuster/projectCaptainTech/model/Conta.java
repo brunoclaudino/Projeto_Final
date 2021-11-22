@@ -58,7 +58,7 @@ private static final long serialVersionUID = 1L;
 		this.cliente = cliente;
 	}
 
-	public Integer getId() {
+	public Integer getId_conta() {
 		return id_conta;
 	}
 

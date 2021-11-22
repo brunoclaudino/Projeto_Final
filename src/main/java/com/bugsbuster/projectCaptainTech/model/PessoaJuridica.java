@@ -57,8 +57,6 @@ public class PessoaJuridica extends Cliente{
 		setDataFundacao(dataFundacao);
 	}
 
-
-
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
