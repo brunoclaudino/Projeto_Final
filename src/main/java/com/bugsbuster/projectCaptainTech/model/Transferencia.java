@@ -24,12 +24,12 @@ public class Transferencia implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "conta_origem", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")
+	//@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")
 	private Conta contaOrigem;
 	
 	@ManyToOne
 	@JoinColumn(name = "conta_destino", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")
+	//@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")
 	private Conta contaDestino;
 	
 	@NotNull(message = "Campo valor vazio - Classe Transferencia")

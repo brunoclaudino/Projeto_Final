@@ -20,7 +20,7 @@ public class PessoaFisica extends Cliente{
 	@NotNull(message = "Campo CPF Vazio")
 	@Size(min=11, max=11)
 	private String cpf;
-	@NotNull(message = "Campo CPF Vazio")
+	@NotNull(message = "Campo Data de Nascimento Vazio")
 	@Past
 	private Date dataNascimento;
 	@NotNull
@@ -35,7 +35,7 @@ public class PessoaFisica extends Cliente{
 			@NotNull @Size(min = 14, max = 14) String telefone, Endereco endereco, @NotNull boolean ativo,
 			@NotNull(message = "Campo Nome Vazio") @Size(min = 3) String nome,
 			@NotNull(message = "Campo CPF Vazio") @Size(min = 11, max = 11) String cpf,
-			@NotNull(message = "Campo CPF Vazio") @Past @Size(min = 11, max = 11) String dataNascimento,
+			@NotNull(message = "Campo CPF Vazio") @Past String dataNascimento,
 			@NotNull @Size(min = 3) String ocupacao) throws ParseException {
 		super(dataCadastro, email, telefone, endereco);
 		this.nome = nome;

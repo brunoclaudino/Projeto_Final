@@ -33,9 +33,8 @@ public class PessoaJuridica extends Cliente{
 	private String inscricaoEstadual;
 	
 	@NotNull(message = "Campo Data Vazio")
-	@Size(min=3)
 	@Past
-	private Date dataFuncadacao;
+	private Date dataFundacao;
 	
 	public PessoaJuridica() {
 		super();
@@ -49,13 +48,13 @@ public class PessoaJuridica extends Cliente{
 			@NotNull(message = "Campo Nome Fantasia Vazio") @Size(min = 5, max = 50) String nomeFantasia,
 			@NotNull(message = "Campo CNPJ Vazio") @Size(min = 14, max = 14) String cnpj,
 			@NotNull(message = "Campo Inscrição Estual Vazio") @Size(min = 3) String inscricaoEstadual,
-			@NotNull(message = "Campo Data Vazio") @Size(min = 3) @Past String dataFuncadacao) throws ParseException {
+			@NotNull(message = "Campo Data Vazio") @Past String dataFundacao) throws ParseException {
 		super(dataCadastro, email, telefone, endereco);
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
 		this.cnpj = cnpj;
 		this.inscricaoEstadual = inscricaoEstadual;
-		setDataFuncadacao(dataFuncadacao);
+		setDataFundacao(dataFundacao);
 	}
 
 
@@ -92,13 +91,13 @@ public class PessoaJuridica extends Cliente{
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
 
-	public Date getDataFuncadacao() {
-		return dataFuncadacao;
+	public Date getDataFundacao() {
+		return dataFundacao;
 	}
 
-	public void setDataFuncadacao(String dataFuncadacao) throws ParseException {
+	public void setDataFundacao(String dataFundacao) throws ParseException {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-		this.dataFuncadacao = formato.parse(dataFuncadacao);
+		this.dataFundacao = formato.parse(dataFundacao);
 	}
 	
 }

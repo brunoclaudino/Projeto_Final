@@ -1,6 +1,9 @@
 package com.bugsbuster.projectCaptainTech.service;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +27,7 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 
 	@Override
 	public Transferencia criarTransferencia(Transferencia tran) {
+		tran.setData(pegarData());
 		return this.tranRepo.save(tran);
 	}
 
@@ -35,6 +39,11 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 	@Override
 	public Iterable<Transferencia> obterPorConta(int id) {
 		return this.tranRepo.findHistConta(id);
+	}
+	
+	public String pegarData() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dtf.format(LocalDateTime.now());
 	}
 
 }

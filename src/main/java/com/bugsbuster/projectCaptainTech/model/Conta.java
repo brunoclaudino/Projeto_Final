@@ -24,11 +24,9 @@ private static final long serialVersionUID = 1L;
 	private Integer id_conta;
 	
 	@NotNull(message = "Campo Numero vazio - Classe Conta")
-	@Size(min=14, max=14)
 	private Integer numero;
 	
 	@NotNull(message = "Campo Agencia vazio - Classe Conta")
-	@Size(min=14, max=14)
 	private Integer agencia;
 	
 	@NotNull
@@ -48,15 +46,15 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Conta(@NotNull(message = "Campo Numero vazio - Classe Conta") @Size(min = 14, max = 14) Integer numero,
-			@NotNull(message = "Campo Agencia vazio - Classe Conta") @Size(min = 14, max = 14) Integer agencia,
-			@NotNull Double saldo, @NotNull LocalDate dataAbertura,
+	public Conta(@NotNull(message = "Campo Numero vazio - Classe Conta")Integer numero,
+			@NotNull(message = "Campo Agencia vazio - Classe Conta") Integer agencia,
+			@NotNull Double saldo, @NotNull String dataAbertura,
 			@NotNull(message = "Campo cliente vazio - Classe Conta") Cliente cliente) {
 		super();
 		this.numero = numero;
 		this.agencia = agencia;
 		this.saldo = saldo;
-		this.dataAbertura = dataAbertura;
+		setDataAbertura(dataAbertura);
 		this.cliente = cliente;
 	}
 
