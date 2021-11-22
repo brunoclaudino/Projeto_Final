@@ -50,7 +50,7 @@ public class Transferencia implements Serializable{
 		setData(data);
 	}
 
-	public int getId() {
+	public int getId_transferencia() {
 		return id_transferencia;
 	}
 

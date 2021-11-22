@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bugsbuster.projectCaptainTech.model.Conta;
-import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
 import com.bugsbuster.projectCaptainTech.model.PessoaJuridica;
 import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaJuridicaRepository;
