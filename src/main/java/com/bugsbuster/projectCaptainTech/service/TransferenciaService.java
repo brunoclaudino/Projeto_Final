@@ -1,6 +1,7 @@
 package com.bugsbuster.projectCaptainTech.service;
 
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,8 +27,12 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 	}
 
 	@Override
-	public Transferencia criarTransferencia(Transferencia tran) {
+	public Transferencia criarTransferencia(Transferencia tran){
+		try {
 		tran.setData(pegarData());
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
 		return this.tranRepo.save(tran);
 	}
 
@@ -42,7 +47,7 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 	}
 	
 	public String pegarData() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSS");
 		return dtf.format(LocalDateTime.now());
 	}
 

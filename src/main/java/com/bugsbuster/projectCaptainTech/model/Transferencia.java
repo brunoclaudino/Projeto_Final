@@ -1,8 +1,11 @@
 package com.bugsbuster.projectCaptainTech.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -36,13 +39,13 @@ public class Transferencia implements Serializable{
 	private double valor;
 	
 	@NotNull(message = "Campo data vazio - Classe Transferencia")
-	private LocalDate data;
+	private Date data;
 	
 	public Transferencia() {
 		super();
 	}
 	
-	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor, String data) {
+	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor, String data) throws ParseException {
 		super();
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
@@ -78,13 +81,13 @@ public class Transferencia implements Serializable{
 		this.valor = valor;
 	}
 
-	public LocalDate getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		this.data = LocalDate.parse(data, date);
+	public void setData(String data) throws ParseException {
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS"); 
+		this.data = formato.parse(data);
 	}
 
 	@Override
