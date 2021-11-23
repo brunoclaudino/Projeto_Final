@@ -25,7 +25,7 @@ public class PessoaFisicaServiceImpl{
 	}
 	
 	public PessoaFisica obterPorId(int id){
-		return this.pessoaFisicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+		return this.pessoaFisicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id de Pessoa Física Inválido"));
 	}
 	
 	public PessoaFisica criarPessoaFisica(PessoaFisica pf) {
