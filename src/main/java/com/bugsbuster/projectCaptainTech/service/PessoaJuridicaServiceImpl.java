@@ -28,9 +28,8 @@ public class PessoaJuridicaServiceImpl {
 	}
 	
 	public PessoaJuridica criarPessoaJuridica(PessoaJuridica pj) {
-		pj.setDataCadastro(pegarData());
 		PessoaJuridica novaPj = this.pessoaJuridicaRepository.save(pj);
-		Conta conta = new Conta(10, 1, 0.01, pegarData(), pj);
+		Conta conta = new Conta(10, pj, 0.0);
 		this.contaRepository.save(conta);
 		return novaPj;
 	}
@@ -59,10 +58,6 @@ public class PessoaJuridicaServiceImpl {
 		return this.pessoaJuridicaRepository.save(newPJ);
 	}
 	
-	public String pegarData() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return dtf.format(LocalDateTime.now());
-	}
 	
 //	public void deletar(int id) {
 //		pessoaJuridicaRepository.deleteById(id);

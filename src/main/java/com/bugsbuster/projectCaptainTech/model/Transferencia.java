@@ -2,9 +2,6 @@ package com.bugsbuster.projectCaptainTech.model;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,7 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -36,21 +38,23 @@ public class Transferencia implements Serializable{
 	private Conta contaDestino;
 	
 	@NotNull(message = "Campo valor vazio - Classe Transferencia")
+	@Positive
 	private double valor;
 	
 	@NotNull(message = "Campo data vazio - Classe Transferencia")
-	private Date data;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data = new java.sql.Date(System.currentTimeMillis());
 	
 	public Transferencia() {
 		super();
 	}
 	
-	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor, String data) throws ParseException {
+	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor) throws ParseException {
 		super();
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
-		setData(data);
 	}
 
 	public int getId_transferencia() {
@@ -83,11 +87,6 @@ public class Transferencia implements Serializable{
 
 	public Date getData() {
 		return data;
-	}
-
-	public void setData(String data) throws ParseException {
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS"); 
-		this.data = formato.parse(data);
 	}
 
 	@Override

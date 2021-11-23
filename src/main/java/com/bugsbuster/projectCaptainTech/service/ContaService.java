@@ -23,12 +23,6 @@ public class ContaService {
 	}
 	
 	public Conta criarConta(Conta conta) {
-		conta.setDataAbertura(pegarData());
 		return this.contaRepository.save(conta);
-	}
-	
-	public String pegarData() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return dtf.format(LocalDateTime.now());
 	}
 }
