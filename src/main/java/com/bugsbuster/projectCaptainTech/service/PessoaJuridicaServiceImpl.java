@@ -28,7 +28,6 @@ public class PessoaJuridicaServiceImpl {
 	}
 	
 	public PessoaJuridica criarPessoaJuridica(PessoaJuridica pj) {
-		pj.setDataCadastro(pegarData());
 		PessoaJuridica novaPj = this.pessoaJuridicaRepository.save(pj);
 		Conta conta = new Conta(10, 1, 0.01, pegarData(), pj);
 		this.contaRepository.save(conta);

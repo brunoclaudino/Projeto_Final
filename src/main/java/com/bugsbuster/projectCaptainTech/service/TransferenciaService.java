@@ -1,13 +1,12 @@
 package com.bugsbuster.projectCaptainTech.service;
 
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
+
 import com.bugsbuster.projectCaptainTech.model.Transferencia;
 import com.bugsbuster.projectCaptainTech.repository.TransferenciaRepository;
 
@@ -29,7 +28,7 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 	@Override
 	public Transferencia criarTransferencia(Transferencia tran){
 		try {
-		tran.setData(pegarData());
+		//tran.setData(pegarData());
 		}catch(Exception e) {
 			System.out.println(e.toString());
 		}

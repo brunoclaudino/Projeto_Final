@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bugsbuster.projectCaptainTech.model.Cliente;
 import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
 import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
@@ -29,7 +28,6 @@ public class PessoaFisicaServiceImpl{
 	}
 	
 	public PessoaFisica criarPessoaFisica(PessoaFisica pf) {
-		pf.setDataCadastro(pegarData());
 		PessoaFisica novaPf = this.pessoaFisicaRepository.save(pf);
 		Conta conta = new Conta(10, 1, 0.01, pegarData(), pf);
 		this.contaRepository.save(conta);
