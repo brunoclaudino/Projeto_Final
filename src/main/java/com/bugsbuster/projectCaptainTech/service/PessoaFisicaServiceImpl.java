@@ -1,8 +1,5 @@
 package com.bugsbuster.projectCaptainTech.service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +26,7 @@ public class PessoaFisicaServiceImpl{
 	
 	public PessoaFisica criarPessoaFisica(PessoaFisica pf) {
 		PessoaFisica novaPf = this.pessoaFisicaRepository.save(pf);
-		Conta conta = new Conta(10, 1, 0.01, pegarData(), pf);
+		Conta conta = new Conta(10, pf, 0.01);
 		this.contaRepository.save(conta);
 		return novaPf;
 	}
@@ -44,8 +41,4 @@ public class PessoaFisicaServiceImpl{
 //		PessoaFisica pf = (PessoaFisica) pessoaFisicaRepository.findById(id);
 //		return null;
 //	}
-	public String pegarData() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return dtf.format(LocalDateTime.now());
-	}
 }
