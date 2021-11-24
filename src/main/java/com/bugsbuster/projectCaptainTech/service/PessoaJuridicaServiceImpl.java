@@ -1,14 +1,9 @@
 package com.bugsbuster.projectCaptainTech.service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.PessoaJuridica;
-import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaJuridicaRepository;
 
 @Service
@@ -16,8 +11,6 @@ public class PessoaJuridicaServiceImpl {
 	
 	@Autowired
 	PessoaJuridicaRepository pessoaJuridicaRepository;
-	@Autowired
-	ContaRepository contaRepository;
 	
 	public Iterable<PessoaJuridica> obterTodos(){
 		return this.pessoaJuridicaRepository.findAll();
@@ -28,10 +21,7 @@ public class PessoaJuridicaServiceImpl {
 	}
 	
 	public PessoaJuridica criarPessoaJuridica(PessoaJuridica pj) {
-		PessoaJuridica novaPj = this.pessoaJuridicaRepository.save(pj);
-		Conta conta = new Conta(10, pj, 0.0);
-		this.contaRepository.save(conta);
-		return novaPj;
+		return this.pessoaJuridicaRepository.save(pj);
 	}
 	
 	public PessoaJuridica atualizar(PessoaJuridica pj) {
@@ -57,7 +47,6 @@ public class PessoaJuridicaServiceImpl {
 		newPJ.setAtivo(false);
 		return this.pessoaJuridicaRepository.save(newPJ);
 	}
-	
 	
 //	public void deletar(int id) {
 //		pessoaJuridicaRepository.deleteById(id);

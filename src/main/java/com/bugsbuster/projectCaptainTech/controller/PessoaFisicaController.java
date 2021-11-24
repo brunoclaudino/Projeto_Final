@@ -5,13 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
-import com.bugsbuster.projectCaptainTech.model.PessoaJuridica;
 import com.bugsbuster.projectCaptainTech.repository.EnderecoRepository;
 import com.bugsbuster.projectCaptainTech.service.PessoaFisicaServiceImpl;
 
@@ -36,13 +34,10 @@ public class PessoaFisicaController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@PutMapping(value =  "/{id}")
-	public PessoaFisica desativarPf(@PathVariable int id) {
-		return this.pessoaFisicaService.desativar(id);
-	}
-	
 	@PostMapping
 	public PessoaFisica criarPessoaFisica(@RequestBody PessoaFisica pf) {
+//		Endereco end = enderecoRepository.findById(pf.getEndereco().getId_endereco()).orElseThrow();
+//		pf.setEndereco(end);
 		return this.pessoaFisicaService.criarPessoaFisica(pf);
 		
 	}
