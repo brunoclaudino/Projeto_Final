@@ -1,16 +1,20 @@
 package com.bugsbuster.projectCaptainTech.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
+
+import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.Transferencia;
+import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.TransferenciaRepository;
 
 @Service
-public class TransferenciaService implements InterfaceTransferenciaService{
+public class TransferenciaService implements InterfaceTransferenciaService {
 	@Autowired
 	TransferenciaRepository tranRepo;
+
+	@Autowired
+	ContaRepository contaRepo;
 
 	@Override
 	public Iterable<Transferencia> obterTodos() {
@@ -19,12 +23,23 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 
 	@Override
 	public Iterable<Transferencia> obterPorDestino(int id) {
-		return  this.tranRepo.findByDestino(id);
+		return this.tranRepo.findByDestino(id);
 	}
 
 	@Override
 	public Transferencia criarTransferencia(Transferencia tran) {
-		return this.tranRepo.save(tran);
+		Conta origem = contaRepo.getById(tran.getContaOrigem().getId_conta());
+		Conta destino = contaRepo.getById(tran.getContaDestino().getId_conta());
+		if(origem.getCliente().getAtivo() && destino.getCliente().getAtivo()) {
+			if(origem.getSaldo() - tran.getValor() >= -200.0) {
+				origem.setSaldo(origem.getSaldo() - tran.getValor());
+				destino.setSaldo(destino.getSaldo() + tran.getValor());
+				contaRepo.save(origem); //postman não atualiza as tabelas de conta
+				contaRepo.save(destino);
+				return this.tranRepo.save(tran);
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -36,5 +51,4 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 	public Iterable<Transferencia> obterPorConta(int id) {
 		return this.tranRepo.findHistConta(id);
 	}
-
 }

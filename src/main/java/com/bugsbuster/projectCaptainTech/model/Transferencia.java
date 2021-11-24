@@ -1,8 +1,8 @@
 package com.bugsbuster.projectCaptainTech.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -11,7 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -24,33 +29,35 @@ public class Transferencia implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "conta_origem", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")
+	//@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")
 	private Conta contaOrigem;
 	
 	@ManyToOne
 	@JoinColumn(name = "conta_destino", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")
+	//@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")
 	private Conta contaDestino;
 	
 	@NotNull(message = "Campo valor vazio - Classe Transferencia")
+	@Positive
 	private double valor;
 	
 	@NotNull(message = "Campo data vazio - Classe Transferencia")
-	private LocalDate data;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data = new java.sql.Date(System.currentTimeMillis());
 	
 	public Transferencia() {
 		super();
 	}
 	
-	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor, String data) {
+	public Transferencia(Conta contaOrigem, Conta contaDestino, double valor) throws ParseException {
 		super();
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
-		setData(data);
 	}
 
-	public int getId() {
+	public int getId_transferencia() {
 		return id_transferencia;
 	}
 
@@ -78,13 +85,8 @@ public class Transferencia implements Serializable{
 		this.valor = valor;
 	}
 
-	public LocalDate getData() {
+	public Date getData() {
 		return data;
-	}
-
-	public void setData(String data) {
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		this.data = LocalDate.parse(data, date);
 	}
 
 	@Override

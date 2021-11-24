@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,17 +38,8 @@ public class TransferenciaController {
 		return this.tranService.obterPorConta(conta);
 	}
 	
-	@PostMapping(value = "/{or}/{dest}/{value}/{date}")
-	public Transferencia novaTransferencia(@PathVariable int or,
-			@PathVariable int dest,
-			@PathVariable double value,
-			@PathVariable String date){
-		Transferencia nova = new Transferencia();
-		//nova.setContaDestino(dest);
-		//nova.setContaOrigem(or);
-		nova.setValor(value);
-		nova.setData(date);
-		return this.tranService.criarTransferencia(nova);
-		
+	@PostMapping()
+	public Transferencia novaTransferencia(@RequestBody Transferencia tran){
+		return this.tranService.criarTransferencia(tran);
 	}
 }
