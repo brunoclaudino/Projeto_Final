@@ -26,7 +26,7 @@ public class PessoaFisicaServiceImpl{
 	
 	public PessoaFisica criarPessoaFisica(PessoaFisica pf) {
 		PessoaFisica novaPf = this.pessoaFisicaRepository.save(pf);
-		Conta conta = new Conta(10, pf, 0.01);
+		Conta conta = new Conta(10, pf, 0.00);
 		this.contaRepository.save(conta);
 		return novaPf;
 	}

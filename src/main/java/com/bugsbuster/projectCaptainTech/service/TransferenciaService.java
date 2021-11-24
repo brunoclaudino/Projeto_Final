@@ -32,15 +32,14 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 		Conta destino = contaRepo.getById(tran.getContaDestino().getId_conta());
 		if(origem.getCliente().getAtivo() && destino.getCliente().getAtivo()) {
 			if(origem.getSaldo() - tran.getValor() >= -200.0) {
-				tran.getContaOrigem().setSaldo(origem.getSaldo()-tran.getValor());
-				tran.getContaDestino().setSaldo(tran.getValor());
+				origem.setSaldo(origem.getSaldo() - tran.getValor());
+				destino.setSaldo(destino.getSaldo() + tran.getValor());
 				contaRepo.save(origem); //postman não atualiza as tabelas de conta
 				contaRepo.save(destino);
 				return this.tranRepo.save(tran);
 			}
 		}
 		return null;
-		
 	}
 
 	@Override
