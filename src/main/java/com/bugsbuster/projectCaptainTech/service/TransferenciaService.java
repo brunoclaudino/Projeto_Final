@@ -1,5 +1,9 @@
 package com.bugsbuster.projectCaptainTech.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +36,12 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 		Conta destino = contaRepo.getById(tran.getContaDestino().getId_conta());
 		if(origem.getCliente().getAtivo() && destino.getCliente().getAtivo()) {
 			if(origem.getSaldo() - tran.getValor() >= -200.0) {
-				origem.setSaldo(origem.getSaldo() - tran.getValor());
-				destino.setSaldo(destino.getSaldo() + tran.getValor());
+				BigDecimal or = BigDecimal.valueOf(origem.getSaldo() - tran.getValor());
+			    or = or.setScale(2, RoundingMode.HALF_UP);
+				origem.setSaldo(or.doubleValue());
+				BigDecimal dest = BigDecimal.valueOf(destino.getSaldo() + tran.getValor());
+			    dest = dest.setScale(2, RoundingMode.HALF_UP);
+				destino.setSaldo(dest.doubleValue());
 				contaRepo.save(origem); //postman não atualiza as tabelas de conta
 				contaRepo.save(destino);
 				return this.tranRepo.save(tran);
