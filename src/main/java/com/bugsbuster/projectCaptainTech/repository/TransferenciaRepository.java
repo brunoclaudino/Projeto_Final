@@ -14,5 +14,8 @@ public interface TransferenciaRepository extends CrudRepository<Transferencia, I
 	
 	@Query("from Transferencia where conta_origem=:conta or conta_destino=:conta")
     public Iterable<Transferencia> findHistConta(int conta);
+	
+	@Query("from Transferencia where (conta_origem=:conta or conta_destino=:conta) order by data desc")
+	public Iterable<Transferencia> findHistOrdenado(int conta);
 
 }

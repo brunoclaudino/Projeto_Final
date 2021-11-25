@@ -60,4 +60,8 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 	public Iterable<Transferencia> obterPorConta(int id) {
 		return this.tranRepo.findHistConta(id);
 	}
+	
+	public Iterable<Transferencia> obterHistOrdenado(int conta){
+		return this.tranRepo.findHistOrdenado(conta);
+	}
 }

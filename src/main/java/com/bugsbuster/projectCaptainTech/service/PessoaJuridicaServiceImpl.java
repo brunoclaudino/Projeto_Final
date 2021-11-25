@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.PessoaJuridica;
 import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
+import com.bugsbuster.projectCaptainTech.repository.EnderecoRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaJuridicaRepository;
 
 @Service
@@ -15,6 +16,8 @@ public class PessoaJuridicaServiceImpl {
 	PessoaJuridicaRepository pessoaJuridicaRepository;
 	@Autowired
 	ContaRepository contaRepository;
+	@Autowired
+	EnderecoRepository enderecoRepository;
 
 	public Iterable<PessoaJuridica> obterTodos() {
 		return this.pessoaJuridicaRepository.findAll();
