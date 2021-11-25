@@ -39,7 +39,7 @@ public class TransferenciaController {
 	}
 	
 	@GetMapping(value = "/ordenadas/{conta}")
-	public Iterable<Transferencia> obterHistOrdenado(@PathVariable int conta){
+	public Iterable<Transferencia> queryFirst1Iterable(@PathVariable int conta){
 		return this.tranService.obterHistOrdenado(conta);
 	}
 	
