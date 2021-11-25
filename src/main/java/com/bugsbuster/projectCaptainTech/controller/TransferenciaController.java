@@ -38,6 +38,11 @@ public class TransferenciaController {
 		return this.tranService.obterPorConta(conta);
 	}
 	
+	@GetMapping(value = "/ordenadas/{conta}")
+	public Iterable<Transferencia> obterHistOrdenado(@PathVariable int conta){
+		return this.tranService.obterHistOrdenado(conta);
+	}
+	
 	@PostMapping()
 	public Transferencia novaTransferencia(@RequestBody Transferencia tran){
 		return this.tranService.criarTransferencia(tran);

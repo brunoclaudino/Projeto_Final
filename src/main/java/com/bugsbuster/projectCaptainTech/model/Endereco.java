@@ -56,6 +56,7 @@ public class Endereco implements Serializable{
 		this.estado = estado;
 		this.cep = cep;
 	}
+	
 
 	public Integer getId_endereco() {
 		return id_endereco;
