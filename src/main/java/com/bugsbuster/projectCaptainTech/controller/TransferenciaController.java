@@ -38,8 +38,13 @@ public class TransferenciaController {
 		return this.tranService.obterPorConta(conta);
 	}
 	
+	/**
+	 * 
+	 * @param conta numero da conta
+	 * @return RETORNA AS ULTIMAS TRANSFERENCIAS ORDENADAS
+	 */
 	@GetMapping(value = "/ordenadas/{conta}")
-	public Iterable<Transferencia> queryFirst1Iterable(@PathVariable int conta){
+	public Iterable<Transferencia> findHistOrdenado(@PathVariable int conta){
 		return this.tranService.obterHistOrdenado(conta);
 	}
 	
