@@ -56,6 +56,16 @@ public class PessoaJuridicaController {
 		return this.pessoaJuridicaService.obterPorTelefone(telefone);
 	}
 	
+	@GetMapping(value="/razao/{razao}")
+	public Iterable<PessoaJuridica> obterPorRazaoSocial(@PathVariable String razao) {
+		return this.pessoaJuridicaService.obterPorRazaoSocial(razao);
+	}
+	
+	@GetMapping(value="/inscricao/{inscricao}")
+	public Iterable<PessoaJuridica> obterPorInscricaoEstadual(@PathVariable String inscricao) {
+		return this.pessoaJuridicaService.obterPorInscricaoEstadual(inscricao);
+	}
+	
 	@PutMapping
 	public PessoaJuridica atualizarPj(@RequestBody PessoaJuridica pj) {
 		return this.pessoaJuridicaService.atualizar(pj);
