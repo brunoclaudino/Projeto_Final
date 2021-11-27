@@ -7,4 +7,6 @@ import com.bugsbuster.projectCaptainTech.model.Conta;
 public interface ContaRepository extends JpaRepository<Conta, Integer> {
 	
 	public boolean existsByNumero(int account);
+	
+	public Iterable<Conta> findByNumero(int numero);
 }

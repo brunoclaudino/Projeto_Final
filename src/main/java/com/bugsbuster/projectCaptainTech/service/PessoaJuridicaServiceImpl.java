@@ -64,6 +64,18 @@ public class PessoaJuridicaServiceImpl {
 		newPJ.setAtivo(false);
 		return this.pessoaJuridicaRepository.save(newPJ);
 	}
+	
+	public Iterable<PessoaJuridica> obterPorNomeFantasia(String nome){
+		return this.pessoaJuridicaRepository.findByNomeFantasiaContaining(nome);
+	}
+	
+	public Iterable<PessoaJuridica> obterPorCnpj(String cnpj){
+		return this.pessoaJuridicaRepository.findByCnpj(cnpj);
+	}
+	
+	public Iterable<PessoaJuridica> obterPorTelefone(String telefone){
+		return this.pessoaJuridicaRepository.findByTelefone(telefone);
+	}
 
 //	public void deletar(int id) {
 //		pessoaJuridicaRepository.deleteById(id);

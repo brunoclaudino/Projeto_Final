@@ -36,9 +36,23 @@ public class PessoaFisicaController {
 	
 	@PostMapping
 	public PessoaFisica criarPessoaFisica(@RequestBody PessoaFisica pf) {
-//		Endereco end = enderecoRepository.findById(pf.getEndereco().getId_endereco()).orElseThrow();
-//		pf.setEndereco(end);
 		return this.pessoaFisicaService.criarPessoaFisica(pf);
 		
 	}
+	
+	@GetMapping(value = "/nome/{nome}")
+	public Iterable<PessoaFisica> obterPorNome(@PathVariable String nome){
+		return this.pessoaFisicaService.obterPorNome(nome);
+	}
+	
+	@GetMapping(value = "/cpf/{cpf}")
+	public Iterable<PessoaFisica> obterPorCpf(@PathVariable String cpf){
+		return this.pessoaFisicaService.obterPorCpf(cpf);
+	}
+	
+	@GetMapping(value = "/telefone/{telefone}")
+	public Iterable<PessoaFisica> obterPorTelefone(@PathVariable String telefone){
+		return this.pessoaFisicaService.obterPorTelefone(telefone);
+	}
+	
 }

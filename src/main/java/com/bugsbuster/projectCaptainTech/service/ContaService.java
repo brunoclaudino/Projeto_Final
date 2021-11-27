@@ -25,4 +25,8 @@ public class ContaService {
 	public Conta criarConta(Conta conta) {
 		return this.contaRepository.save(conta);
 	}
+	
+	public Iterable<Conta> obterPorNumero(int numero){
+		return this.contaRepository.findByNumero(numero);
+	}
 }
