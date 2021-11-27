@@ -1,17 +1,30 @@
 package com.bugsbuster.projectCaptainTech.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration;
+import org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration;
+import org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.PublishRequest;
+import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.PessoaJuridica;
 import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.EnderecoRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaJuridicaRepository;
 
+@SpringBootApplication (exclude = {ContextInstanceDataAutoConfiguration.class,
+		ContextStackAutoConfiguration.class, ContextRegionProviderAutoConfiguration.class})
 @Service
 public class PessoaJuridicaServiceImpl {
-
+	@Autowired
+	AmazonSNSClient snsClient;
+	
+	String TOPIC_ARN = "arn:aws:sns:us-east-2:965934840569:BugBuster_Indisponivel";
+	
 	@Autowired
 	PessoaJuridicaRepository pessoaJuridicaRepository;
 	@Autowired
@@ -30,6 +43,7 @@ public class PessoaJuridicaServiceImpl {
 	public PessoaJuridica criarPessoaJuridica(PessoaJuridica pj) {
 		PessoaJuridica novaPj = this.pessoaJuridicaRepository.save(pj);
 		boolean resp = true;
+		addSubscription(pj.getEmail());
 		while (resp) {
 			int randomNumber = (int) (Math.random() * (99999 - 10000) + 10000);
 			if (!this.contaRepository.existsByNumero(randomNumber)) {
@@ -85,9 +99,19 @@ public class PessoaJuridicaServiceImpl {
 		return this.pessoaJuridicaRepository.findByInscricaoEstadualContaining(inscricao);
 	}
 
-
+	public String addSubscription(String email){
+		SubscribeRequest request = new SubscribeRequest(TOPIC_ARN,
+				"email", email);
+		snsClient.subscribe(request);
+		return "Pedido de Subscrição enviado para o email:"+
+				email+". Verifique sua caixa de mensagem";
+	}
 	
-	
-	
+	public String publishMessageToTpoic(String mensagem) {
+		PublishRequest publishRequest=new PublishRequest(TOPIC_ARN,
+				mensagem, "BlueBank: Notificação");
+		snsClient.publish(publishRequest);
+		return "Notificação Enviada!";
+	}	
 	
 }

@@ -65,8 +65,12 @@ public class PessoaJuridicaController {
 	public Iterable<PessoaJuridica> obterPorInscricaoEstadual(@PathVariable String inscricao) {
 		return this.pessoaJuridicaService.obterPorInscricaoEstadual(inscricao);
 	}
+	@PostMapping(value="/mensagem")
+	public String enviarMensagem(@RequestBody String mensagem) {
+		return this.pessoaJuridicaService.publishMessageToTpoic(mensagem);
+	}
 	
-	@PutMapping
+	@PutMapping(path= "/atualizar")
 	public PessoaJuridica atualizarPj(@RequestBody PessoaJuridica pj) {
 		return this.pessoaJuridicaService.atualizar(pj);
 	}
