@@ -9,4 +9,6 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 	public boolean existsByNumero(int account);
 	
 	public Iterable<Conta> findByNumero(int numero);
+	
+	public Iterable<Conta> findByDataAbertura(String data);
 }

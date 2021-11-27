@@ -10,4 +10,8 @@ public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Inte
 	public Iterable<PessoaFisica> findByCpf(String cpf);
 	
 	public Iterable<PessoaFisica> findByTelefone(String telefone);
+	
+	public Iterable<PessoaFisica> findByDataNascimentoOrderByDataNascimento(String data);
+	
+	public Iterable<PessoaFisica> findByOcupacaoOrderByOcupacao(String ocupacao);
 }
