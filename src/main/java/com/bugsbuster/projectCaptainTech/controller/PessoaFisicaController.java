@@ -55,4 +55,14 @@ public class PessoaFisicaController {
 		return this.pessoaFisicaService.obterPorTelefone(telefone);
 	}
 	
+//	@GetMapping(value = "/datanascimento/{data}")
+//	public Iterable<PessoaFisica> ObterPorDataNascimento(@PathVariable String data){
+//		return this.pessoaFisicaService.ObterPorDataNascimento(data);
+//	}
+	
+	@GetMapping(value = "/ocupacao/{ocupacao}")
+	public Iterable<PessoaFisica> ObterPorOcupacao(@PathVariable String ocupacao){
+		return this.pessoaFisicaService.ObterPorOcupacao(ocupacao);
+	}
+	
 }

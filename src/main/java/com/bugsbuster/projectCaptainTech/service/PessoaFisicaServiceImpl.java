@@ -56,4 +56,12 @@ public class PessoaFisicaServiceImpl {
 	public Iterable<PessoaFisica> obterPorTelefone(String telefone){
 		return this.pessoaFisicaRepository.findByTelefone(telefone);
 	}
+	
+	public Iterable<PessoaFisica> ObterPorDataNascimento(String data){
+		return this.pessoaFisicaRepository.findByDataNascimentoOrderByDataNascimento(data);
+	}
+	
+	public Iterable<PessoaFisica> ObterPorOcupacao(String ocupacao){
+		return this.pessoaFisicaRepository.findByOcupacaoOrderByOcupacao(ocupacao);
+	}
 }
