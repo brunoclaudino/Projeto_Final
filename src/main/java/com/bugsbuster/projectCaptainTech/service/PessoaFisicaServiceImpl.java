@@ -44,9 +44,16 @@ public class PessoaFisicaServiceImpl {
 		newPF.setAtivo(false);
 		return this.pessoaFisicaRepository.save(newPF);
 	}
-
-//	public PessoaFisica desativarCliente(int id) {
-//		PessoaFisica pf = (PessoaFisica) pessoaFisicaRepository.findById(id);
-//		return null;
-//	}
+	
+	public Iterable<PessoaFisica> obterPorNome(String nome){
+		return this.pessoaFisicaRepository.findByNomeContaining(nome);
+	}
+	
+	public Iterable<PessoaFisica> obterPorCpf(String cpf){
+		return this.pessoaFisicaRepository.findByCpf(cpf);
+	}
+	
+	public Iterable<PessoaFisica> obterPorTelefone(String telefone){
+		return this.pessoaFisicaRepository.findByTelefone(telefone);
+	}
 }

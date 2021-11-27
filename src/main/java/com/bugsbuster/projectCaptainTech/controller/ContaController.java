@@ -2,6 +2,7 @@ package com.bugsbuster.projectCaptainTech.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +19,9 @@ public class ContaController {
 	public Iterable<Conta> obterTodos(){
 		return this.contaService.obterTodos();
 	}
-
+	
+	@GetMapping(value = "/{numero}")
+	public Iterable<Conta> obterPorNumero(@PathVariable int numero){
+		return this.contaService.obterPorNumero(numero);
+	}
 }
