@@ -76,8 +76,18 @@ public class PessoaJuridicaServiceImpl {
 	public Iterable<PessoaJuridica> obterPorTelefone(String telefone){
 		return this.pessoaJuridicaRepository.findByTelefone(telefone);
 	}
+	
+	public Iterable<PessoaJuridica> obterPorRazaoSocial(String razao){
+		return this.pessoaJuridicaRepository.findByRazaoSocialContaining(razao);
+	}
+	
+	public Iterable<PessoaJuridica> obterPorInscricaoEstadual(String inscricao){
+		return this.pessoaJuridicaRepository.findByInscricaoEstadualContaining(inscricao);
+	}
 
-//	public void deletar(int id) {
-//		pessoaJuridicaRepository.deleteById(id);
-//	}
+
+	
+	
+	
+	
 }
