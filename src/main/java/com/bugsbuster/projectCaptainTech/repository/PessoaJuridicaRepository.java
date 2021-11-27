@@ -10,5 +10,9 @@ public interface PessoaJuridicaRepository extends JpaRepository<PessoaJuridica, 
 	public Iterable<PessoaJuridica> findByCnpj(String cnpj);
 	
 	public Iterable<PessoaJuridica> findByTelefone(String telefone);
+	
+	public Iterable<PessoaJuridica> findByRazaoSocialContaining(String razaoSocial);
+	
+	public Iterable<PessoaJuridica> findByInscricaoEstadualContaining(String inscricaoEstadual);
 
 }
