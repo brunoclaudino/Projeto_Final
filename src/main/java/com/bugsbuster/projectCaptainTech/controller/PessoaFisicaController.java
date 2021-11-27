@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,6 +64,16 @@ public class PessoaFisicaController {
 	@GetMapping(value = "/ocupacao/{ocupacao}")
 	public Iterable<PessoaFisica> ObterPorOcupacao(@PathVariable String ocupacao){
 		return this.pessoaFisicaService.ObterPorOcupacao(ocupacao);
+	}
+	
+	@PostMapping(value="/mensagem")
+	public String enviarMensagem(@RequestBody String mensagem) {
+		return this.pessoaFisicaService.publishMessageToTpoic(mensagem);
+	}
+	
+	@PutMapping(path= "/atualizar")
+	public PessoaFisica atualizarPf(@RequestBody PessoaFisica pf) {
+		return this.pessoaFisicaService.atualizar(pf);
 	}
 	
 }
