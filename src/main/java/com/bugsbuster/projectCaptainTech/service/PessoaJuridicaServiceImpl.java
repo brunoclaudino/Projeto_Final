@@ -33,14 +33,17 @@ public class PessoaJuridicaServiceImpl {
 	EnderecoRepository enderecoRepository;
 
 	public Iterable<PessoaJuridica> obterTodos() {
+		System.out.println("Consultando todas as pessoas juridicas ");
 		return this.pessoaJuridicaRepository.findAll();
 	}
 
 	public PessoaJuridica obterPorId(int id) {
+		System.out.println("Consultando pessoa juridica por ID  ... "+id);
 		return this.pessoaJuridicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
 	}
 
 	public PessoaJuridica criarPessoaJuridica(PessoaJuridica pj) {
+		System.out.println("Criando uma nova pessoa juridica");
 		PessoaJuridica novaPj = this.pessoaJuridicaRepository.save(pj);
 		boolean resp = true;
 		addSubscription(pj.getEmail());
@@ -56,6 +59,7 @@ public class PessoaJuridicaServiceImpl {
 	}
 
 	public PessoaJuridica atualizar(PessoaJuridica pj) {
+		System.out.println("Atualizando cadastro da pessoa juridica ["+pj.getId_cliente()+"] - "+pj.getRazaoSocial());
 		PessoaJuridica newPJ = obterPorId(pj.getId_cliente());
 
 		if (pj.getNomeFantasia() != null) {
@@ -74,28 +78,34 @@ public class PessoaJuridicaServiceImpl {
 	}
 
 	public PessoaJuridica desativar(int id) {
+		System.out.println("Desativando pessoa juridica >>  "+id);
 		PessoaJuridica newPJ = obterPorId(id);
 		newPJ.setAtivo(false);
 		return this.pessoaJuridicaRepository.save(newPJ);
 	}
 	
 	public Iterable<PessoaJuridica> obterPorNomeFantasia(String nome){
+		System.out.println("Consultando pessoa juridica por nome  ... "+nome);
 		return this.pessoaJuridicaRepository.findByNomeFantasiaContaining(nome);
 	}
 	
 	public Iterable<PessoaJuridica> obterPorCnpj(String cnpj){
+		System.out.println("Consultando pessoa juridica por cnpj  ... "+cnpj);
 		return this.pessoaJuridicaRepository.findByCnpj(cnpj);
 	}
 	
 	public Iterable<PessoaJuridica> obterPorTelefone(String telefone){
+		System.out.println("Consultando pessoa juridica por telefone  ... "+telefone);
 		return this.pessoaJuridicaRepository.findByTelefone(telefone);
 	}
 	
 	public Iterable<PessoaJuridica> obterPorRazaoSocial(String razao){
+		System.out.println("Consultando pessoa juridica por Razão Social  ... "+razao);
 		return this.pessoaJuridicaRepository.findByRazaoSocialContaining(razao);
 	}
 	
 	public Iterable<PessoaJuridica> obterPorInscricaoEstadual(String inscricao){
+		System.out.println("Consultando pessoa juridica por Inscrição estadual  ... "+inscricao);
 		return this.pessoaJuridicaRepository.findByInscricaoEstadualContaining(inscricao);
 	}
 

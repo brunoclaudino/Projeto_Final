@@ -14,6 +14,7 @@ import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
 import com.bugsbuster.projectCaptainTech.repository.EnderecoRepository;
 import com.bugsbuster.projectCaptainTech.service.PessoaFisicaServiceImpl;
 
+
 @RestController
 @RequestMapping(path = "/clientePF")
 public class PessoaFisicaController {

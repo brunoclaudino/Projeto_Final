@@ -2,7 +2,6 @@ package com.bugsbuster.projectCaptainTech.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +21,13 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 
 	@Override
 	public Iterable<Transferencia> obterTodos() {
+		System.out.println("Consultando todas as transferências realizadas ");
 		return this.tranRepo.findAll();
 	}
 
 	@Override
 	public Iterable<Transferencia> obterPorDestino(int id) {
+		System.out.println("Consultando transferências por ID da conta destino  ... "+id);
 		return this.tranRepo.findByDestino(id);
 	}
 
@@ -34,6 +35,9 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 	public Transferencia criarTransferencia(Transferencia tran) {
 		Conta origem = contaRepo.getById(tran.getContaOrigem().getId_conta());
 		Conta destino = contaRepo.getById(tran.getContaDestino().getId_conta());
+		System.out.println("cadastrando uma nova pessoa transferência");
+		System.out.println("Conta origem "+origem.getId_conta() + "Para Conta destino "+destino.getId_conta());
+		System.out.println("o valor transferido é de "+tran.getValor());
 		if(origem.getCliente().getAtivo() && destino.getCliente().getAtivo()) {
 			if(origem.getSaldo() - tran.getValor() >= -200.0) {
 				BigDecimal or = BigDecimal.valueOf(origem.getSaldo() - tran.getValor());
@@ -53,15 +57,18 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 
 	@Override
 	public Iterable<Transferencia> obterPorOrigem(int id) {
+		System.out.println("Consultando transferências por ID da conta origem  ... "+id);
 		return this.tranRepo.findByOrigem(id);
 	}
 
 	@Override
 	public Iterable<Transferencia> obterPorConta(int id) {
+		System.out.println("Consultando transferências por numero de conta  ... "+id);
 		return this.tranRepo.findHistConta(id);
 	}
 	
 	public Iterable<Transferencia> obterHistOrdenado(int conta){
+		System.out.println("Consultando as ultimas transferências por conta. Conta pesquisada:: "+conta);
 		return this.tranRepo.findHistOrdenado(conta);
 	}
 }
