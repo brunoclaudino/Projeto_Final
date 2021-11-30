@@ -44,11 +44,12 @@ public class Endereco implements Serializable{
 		super();
 	}
 	
-	public Endereco(@NotNull(message = "Campo Logradouro Vazio") @Size(min = 1) String logradouro,
+	public Endereco(Integer id_endereco, @NotNull(message = "Campo Logradouro Vazio") @Size(min = 1) String logradouro,
 			Integer numero, String bairro, @NotNull(message = "Campo Cidade Vazio") @Size(min = 3) String cidade,
 			@NotNull(message = "Campo Estado Vazio") EnumEstado estado,
 			@NotNull(message = "Campo CEP Vazio") @Size(min = 8) String cep) {
 		super();
+		this.id_endereco = id_endereco;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.bairro = bairro;

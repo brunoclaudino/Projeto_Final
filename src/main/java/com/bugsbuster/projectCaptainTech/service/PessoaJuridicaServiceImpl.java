@@ -113,5 +113,4 @@ public class PessoaJuridicaServiceImpl {
 		snsClient.publish(publishRequest);
 		return "Notificação Enviada!";
 	}	
-	
 }
