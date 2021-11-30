@@ -1,10 +1,10 @@
 package com.bugsbuster.projectCaptainTech.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +14,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -26,11 +30,16 @@ public abstract class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_cliente;
+	
 	@NotNull
-	private LocalDate dataCadastro;
+	@JsonFormat( pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCadastro = new java.sql.Date(System.currentTimeMillis());
+	
 	@NotNull
 	@Email
 	@Size(min=8)
+	@Column(unique = true)
 	private String email;
 	@NotNull
 	@Size(min=14, max=14)
@@ -39,37 +48,31 @@ public abstract class Cliente implements Serializable{
 	
 	@JoinColumn(name="id_enderecoFk", referencedColumnName = "id_endereco")
 	@NotNull(message = "Campo Endereco vazio - Classe Cliente")
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
 	@NotNull
-	@Column(columnDefinition="tinyint(1) default 1") 
-	private boolean ativo;         // Deleção Lógica
+	private boolean ativo = true;         // Deleção Lógica
 	
 	public Cliente() {
 		super();
 	}
-
-	public Cliente( @NotNull String dataCadastro, @NotNull @Email @Size(min = 8) String email,
-			@NotNull @Size(min = 14, max = 14) String telefone, Endereco endereco) {
+	
+	public Cliente(@NotNull @Email @Size(min = 8) String email,
+			@NotNull @Size(min = 14, max = 14) String telefone,
+			@NotNull(message = "Campo Endereco vazio - Classe Cliente") Endereco endereco) {
 		super();
-		setDataCadastro(dataCadastro);
 		this.email = email;
 		this.telefone = telefone;
-		this.endereco = endereco;
+		//this.endereco = endereco;
 	}
 
 	public Integer getId_cliente() {
 		return id_cliente;
 	}
 
-	public LocalDate getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
-	}
-
-	public void setDataCadastro(String dataCadastro) {
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		this.dataCadastro = LocalDate.parse(dataCadastro, date);
 	}
 
 	public String getEmail() {

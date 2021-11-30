@@ -7,59 +7,45 @@ import org.springframework.cloud.aws.autoconfigure.context.ContextRegionProvider
 import org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.bugsbuster.projectCaptainTech.model.Conta;
->>>>>>> c42bac9213b577e656297d032572bcc6423a7875
 import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
+import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaFisicaRepository;
+import com.bugsbuster.projectCaptainTech.service.exceptions.EntityNotFoundException;
 
 
 
 @SpringBootApplication (exclude = {ContextInstanceDataAutoConfiguration.class,
 		ContextStackAutoConfiguration.class, ContextRegionProviderAutoConfiguration.class})
 @Service
-<<<<<<< HEAD
-public class PessoaFisicaServiceImpl implements InterfacePessoaFisica {
-=======
 public class PessoaFisicaServiceImpl {
 	@Autowired
 	AmazonSNSClient snsClient;
 	
 	String TOPIC_ARN = "arn:aws:sns:us-east-2:965934840569:BugBuster_Indisponivel";
->>>>>>> c42bac9213b577e656297d032572bcc6423a7875
 	
 	@Autowired
 	PessoaFisicaRepository pessoaFisicaRepository;
 	
-<<<<<<< HEAD
-	public Iterable<PessoaFisica> obterTodos() {
-		return this.pessoaFisicaRepository.findAll();
-	}
-	
-	public PessoaFisica obterPorId(int id){
-		return this.pessoaFisicaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
-=======
 	@Autowired
 	ContaRepository contaRepository;
 
 	public Iterable<PessoaFisica> obterTodos() {
+		System.out.println("Pesquisando todas as pessoas físicas");
 		return this.pessoaFisicaRepository.findAll();
 	}
 
 	public PessoaFisica obterPorId(int id) {
-		return this.pessoaFisicaRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Id de Pessoa Física Inválido"));
->>>>>>> c42bac9213b577e656297d032572bcc6423a7875
+		System.out.println("Pesquisando pessoa fisica por ID ... "+id);
+		return this.pessoaFisicaRepository.findById(id).orElseThrow( 
+				() -> new EntityNotFoundException("Id da pessoa não encontrado > "+id));
 	}
 
 	public PessoaFisica criarPessoaFisica(PessoaFisica pf) {
-<<<<<<< HEAD
-		return this.pessoaFisicaRepository.save(pf);
-=======
+		System.out.println("Criando uma nova  pessoa fisica ");
 		PessoaFisica novaPf = this.pessoaFisicaRepository.save(pf);
 		boolean resp = true;
 		addSubscription(pf.getEmail());
@@ -75,7 +61,9 @@ public class PessoaFisicaServiceImpl {
 	}
 	
 	public PessoaFisica atualizar(PessoaFisica pf) {
+		System.out.println("Atualizando cadastro da pessoa fisica ["+pf.getId_cliente()+"] - "+pf.getNome());
 		PessoaFisica newPF = this.obterPorId(pf.getId_cliente());
+		
 
 		if (pf.getNome() != null) {
 			newPF.setNome(pf.getNome());
@@ -97,29 +85,34 @@ public class PessoaFisicaServiceImpl {
 	}
 
 	public PessoaFisica desativar(int id) {
+		System.out.println("Desatovar pessoa fisica > "+id);
 		PessoaFisica newPF = obterPorId(id);
 		newPF.setAtivo(false);
 		return this.pessoaFisicaRepository.save(newPF);
->>>>>>> c42bac9213b577e656297d032572bcc6423a7875
 	}
 	
 	public Iterable<PessoaFisica> obterPorNome(String nome){
+		System.out.println("Consultando pessoa fisica por nome  ... "+nome);
 		return this.pessoaFisicaRepository.findByNomeContaining(nome);
 	}
 	
 	public Iterable<PessoaFisica> obterPorCpf(String cpf){
+		System.out.println("Consultando pessoa fisica por cpf  ... "+cpf);
 		return this.pessoaFisicaRepository.findByCpf(cpf);
 	}
 	
 	public Iterable<PessoaFisica> obterPorTelefone(String telefone){
+		System.out.println("Consultando pessoa fisica por telefone  ... "+telefone);
 		return this.pessoaFisicaRepository.findByTelefone(telefone);
 	}
 	
 	public Iterable<PessoaFisica> ObterPorDataNascimento(String data){
+		System.out.println("Consultando pessoa fisica por Data de Nascimento  ... "+data);
 		return this.pessoaFisicaRepository.findByDataNascimentoOrderByDataNascimento(data);
 	}
 	
 	public Iterable<PessoaFisica> ObterPorOcupacao(String ocupacao){
+		System.out.println("Consultando pessoa fisica por ocupacao  ... "+ocupacao);
 		return this.pessoaFisicaRepository.findByOcupacaoOrderByOcupacao(ocupacao);
 	}
 	
