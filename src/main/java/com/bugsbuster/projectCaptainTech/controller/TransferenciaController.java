@@ -37,17 +37,18 @@ public class TransferenciaController {
 		return this.tranService.obterPorConta(conta);
 	}
 	
-	@PostMapping(value = "/{or}/{dest}/{value}/{date}")
-	public Transferencia novaTransferencia(@PathVariable int or,
-			@PathVariable int dest,
-			@PathVariable double value,
-			@PathVariable String date){
-		Transferencia nova = new Transferencia();
-		//nova.setContaDestino(dest);
-		//nova.setContaOrigem(or);
-		nova.setValor(value);
-		nova.setData(date);
-		return this.tranService.criarTransferencia(nova);
-		
+	/**
+	 * 
+	 * @param conta numero da conta
+	 * @return RETORNA AS ULTIMAS TRANSFERENCIAS ORDENADAS
+	 */
+	@GetMapping(value = "/ordenadas/{conta}")
+	public Iterable<Transferencia> findHistOrdenado(@PathVariable int conta){
+		return this.tranService.obterHistOrdenado(conta);
+	}
+	
+	@PostMapping()
+	public Transferencia novaTransferencia(@RequestBody Transferencia tran){
+		return this.tranService.criarTransferencia(tran);
 	}
 }

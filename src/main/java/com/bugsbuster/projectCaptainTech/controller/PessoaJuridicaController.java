@@ -28,5 +28,37 @@ public class PessoaJuridicaController {
 		return ResponseEntity.ok().body(pj);
 	}
 	
+	@GetMapping(value="/nf/{nf}")
+	public Iterable<PessoaJuridica> obterPorNomeFantasia(@PathVariable String nf){
+		return this.pessoaJuridicaService.obterPorNomeFantasia(nf);
+	}
 	
+	@GetMapping(value="/cnpj/{cnpj}")
+	public Iterable<PessoaJuridica> obterPorCnpj(@PathVariable String cnpj){
+		return this.pessoaJuridicaService.obterPorCnpj(cnpj);
+	}
+	
+	@GetMapping(value="/telefone/{telefone}")
+	public Iterable<PessoaJuridica> obterPorTelefone(@PathVariable String telefone){
+		return this.pessoaJuridicaService.obterPorTelefone(telefone);
+	}
+	
+	@GetMapping(value="/razao/{razao}")
+	public Iterable<PessoaJuridica> obterPorRazaoSocial(@PathVariable String razao) {
+		return this.pessoaJuridicaService.obterPorRazaoSocial(razao);
+	}
+	
+	@GetMapping(value="/inscricao/{inscricao}")
+	public Iterable<PessoaJuridica> obterPorInscricaoEstadual(@PathVariable String inscricao) {
+		return this.pessoaJuridicaService.obterPorInscricaoEstadual(inscricao);
+	}
+	@PostMapping(value="/mensagem")
+	public String enviarMensagem(@RequestBody String mensagem) {
+		return this.pessoaJuridicaService.publishMessageToTpoic(mensagem);
+	}
+	
+	@PutMapping(path= "/atualizar")
+	public PessoaJuridica atualizarPj(@RequestBody PessoaJuridica pj) {
+		return this.pessoaJuridicaService.atualizar(pj);
+	}
 }
