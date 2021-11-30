@@ -1,19 +1,20 @@
 package com.bugsbuster.projectCaptainTech.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Conta implements Serializable{
@@ -24,19 +25,18 @@ private static final long serialVersionUID = 1L;
 	private Integer id_conta;
 	
 	@NotNull(message = "Campo Numero vazio - Classe Conta")
-	@Size(min=14, max=14)
 	private Integer numero;
 	
 	@NotNull(message = "Campo Agencia vazio - Classe Conta")
-	@Size(min=14, max=14)
-	private Integer agencia;
+	private static Integer agencia = 0001;
 	
 	@NotNull
 	private Double saldo;
 	
 	@NotNull
-	@Column(name = "data_abertura")
-	private LocalDate dataAbertura;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataAbertura = new java.sql.Date(System.currentTimeMillis());
 	
 	@OneToOne
 	@JoinColumn(name="id_clienteFk", referencedColumnName = "id_cliente")
@@ -48,19 +48,16 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 
-	public Conta(@NotNull(message = "Campo Numero vazio - Classe Conta") @Size(min = 14, max = 14) Integer numero,
-			@NotNull(message = "Campo Agencia vazio - Classe Conta") @Size(min = 14, max = 14) Integer agencia,
-			@NotNull Double saldo, @NotNull LocalDate dataAbertura,
-			@NotNull(message = "Campo cliente vazio - Classe Conta") Cliente cliente) {
+	public Conta(@NotNull(message = "Campo Numero vazio - Classe Conta")Integer numero,
+			@NotNull(message = "Campo cliente vazio - Classe Conta") Cliente cliente, 
+			@NotNull Double saldo) {
 		super();
 		this.numero = numero;
-		this.agencia = agencia;
 		this.saldo = saldo;
-		this.dataAbertura = dataAbertura;
 		this.cliente = cliente;
 	}
 
-	public Integer getId() {
+	public Integer getId_conta() {
 		return id_conta;
 	}
 
@@ -76,10 +73,6 @@ private static final long serialVersionUID = 1L;
 		return agencia;
 	}
 
-	public void setAgencia(Integer agencia) {
-		this.agencia = agencia;
-	}
-
 	public Double getSaldo() {
 		return saldo;
 	}
@@ -88,13 +81,8 @@ private static final long serialVersionUID = 1L;
 		this.saldo = saldo;
 	}
 
-	public LocalDate getDataAbertura() {
+	public Date getDataAbertura() {
 		return dataAbertura;
-	}
-
-	public void setDataAbertura(String dataAbertura) {
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		this.dataAbertura = LocalDate.parse(dataAbertura, date);
 	}
 
 	public Cliente getCliente() {
