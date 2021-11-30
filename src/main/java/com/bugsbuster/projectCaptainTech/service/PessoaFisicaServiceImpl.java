@@ -12,6 +12,7 @@ import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.PessoaFisica;
+import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.PessoaFisicaRepository;
 
 

@@ -5,15 +5,20 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
+
+import com.bugsbuster.projectCaptainTech.model.Conta;
 import com.bugsbuster.projectCaptainTech.model.Transferencia;
+import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.TransferenciaRepository;
 
 @Service
-public class TransferenciaService implements InterfaceTransferenciaService{
+public class TransferenciaService implements InterfaceTransferenciaService {
 	@Autowired
 	TransferenciaRepository tranRepo;
+
+	@Autowired
+	ContaRepository contaRepo;
 
 	@Override
 	public Iterable<Transferencia> obterTodos() {
@@ -22,7 +27,7 @@ public class TransferenciaService implements InterfaceTransferenciaService{
 
 	@Override
 	public Iterable<Transferencia> obterPorDestino(int id) {
-		return  this.tranRepo.findByDestino(id);
+		return this.tranRepo.findByDestino(id);
 	}
 
 	@Override

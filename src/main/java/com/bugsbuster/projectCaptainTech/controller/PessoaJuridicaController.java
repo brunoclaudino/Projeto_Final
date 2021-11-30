@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +25,20 @@ public class PessoaJuridicaController {
 		return this.pessoaJuridicaService.obterTodos();
 	}
 	
+	@PostMapping
+	public PessoaJuridica criarPj(@RequestBody PessoaJuridica pj) {
+		return this.pessoaJuridicaService.criarPessoaJuridica(pj);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<PessoaJuridica> obterPorId(@PathVariable int id){
 		PessoaJuridica pj = this.pessoaJuridicaService.obterPorId(id);
 		return ResponseEntity.ok().body(pj);
+	}
+	
+	@PutMapping(value =  "/{id}")
+	public PessoaJuridica desativarPj(@PathVariable int id) {
+		return this.pessoaJuridicaService.desativar(id);
 	}
 	
 	@GetMapping(value="/nf/{nf}")
