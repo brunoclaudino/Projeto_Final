@@ -13,29 +13,29 @@ import com.bugsbuster.projectCaptainTech.model.Transferencia;
 import com.bugsbuster.projectCaptainTech.service.TransferenciaService;
 
 @RestController
-@RequestMapping(path = "/transferencias")
+@RequestMapping(path = "/transferencias")                                        // Endpoint para serviços de transferência
 public class TransferenciaController {
 	@Autowired
-	private TransferenciaService tranService;
+	private TransferenciaService tranService;                                    // Instância da camada de serviço de transferência
 	
-	@GetMapping
-	public Iterable<Transferencia> obterTodos(){
+	@GetMapping                                                                  // Requisição GET
+	public Iterable<Transferencia> obterTodos(){                                 // Obtem todas as transferências do BD
 		return this.tranService.obterTodos();
 	}
 	
-	@GetMapping(value = "/destino/{destino}")
-	public Iterable<Transferencia> obterPorDestino(@PathVariable int destino){
-		return this.tranService.obterPorDestino(destino);
+	@GetMapping(value = "/destino/{destino}")                                    // Requisição GET com parâmetro por URL
+	public Iterable<Transferencia> obterPorDestino(@PathVariable int destino){   // Obtem as transferências por conta de
+		return this.tranService.obterPorDestino(destino);                        // destino passada
 	}
 	
-	@GetMapping(value = "/origem/{origem}")
-	public Iterable<Transferencia> obterPorOrigem(@PathVariable int origem){
-		return this.tranService.obterPorOrigem(origem);
+	@GetMapping(value = "/origem/{origem}")                                      // Requisição GET com parâmetro da URL
+	public Iterable<Transferencia> obterPorOrigem(@PathVariable int origem){     // Obtem as transferências por conta de origem
+		return this.tranService.obterPorOrigem(origem);                          
 	}
 	
-	@GetMapping(value = "/historico/{conta}")
-	public Iterable<Transferencia> obterHistConta(@PathVariable int conta){
-		return this.tranService.obterPorConta(conta);
+	@GetMapping(value = "/historico/{conta}")                                    // Requisição GET de histório de conta
+	public Iterable<Transferencia> obterHistConta(@PathVariable int conta){      // Obtem as transferências de uma conta passada
+		return this.tranService.obterPorConta(conta);                            // (tanto dinheiro que saiu quanto o que entrou)
 	}
 	
 	/**
@@ -43,13 +43,13 @@ public class TransferenciaController {
 	 * @param conta numero da conta
 	 * @return RETORNA AS ULTIMAS TRANSFERENCIAS ORDENADAS
 	 */
-	@GetMapping(value = "/ordenadas/{conta}")
-	public Iterable<Transferencia> findHistOrdenado(@PathVariable int conta){
+	@GetMapping(value = "/ordenadas/{conta}")                                    // Requisição GET de Histórico ordenada
+	public Iterable<Transferencia> findHistOrdenado(@PathVariable int conta){    // Obtem o Histórico da conta porem ordenado
 		return this.tranService.obterHistOrdenado(conta);
 	}
 	
 	@PostMapping()
-	public Transferencia novaTransferencia(@RequestBody Transferencia tran){
+	public Transferencia novaTransferencia(@RequestBody Transferencia tran){     // Requisição POST para criar nova transferencia
 		return this.tranService.criarTransferencia(tran);
 	}
 }
