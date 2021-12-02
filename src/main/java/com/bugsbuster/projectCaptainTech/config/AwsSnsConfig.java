@@ -16,9 +16,11 @@ import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 public class AwsSnsConfig {
 	@Primary
 	@Bean
-	public AmazonSNSClient SnsClient() {	
-		return (AmazonSNSClient) AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_2)
-				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("AKIA6BZRT7L44C43DFGE",
+	public AmazonSNSClient SnsClient() {	                                  // Configura o client do SNS da AWS             
+		return (AmazonSNSClient) AmazonSNSClientBuilder.standard().           // Retornar um Amazon SNS Client Builder
+				withRegion(Regions.US_EAST_2)                                 // Define a região do serviço (usamos Ohio leste US)
+				.withCredentials(new AWSStaticCredentialsProvider(            // Define as credenciais
+						new BasicAWSCredentials("AKIA6BZRT7L44C43DFGE",       // Passa o Id da chave de acesso e a chave
 						"Py3MdJXul7AhJsxMrNEYhIL72EnaK/YUNPLjyoZH")))
 				.build();
 	}

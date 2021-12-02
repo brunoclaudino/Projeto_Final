@@ -64,7 +64,7 @@ public abstract class Cliente implements Serializable{
 		super();
 		this.email = email;
 		this.telefone = telefone;
-		this.endereco = endereco;
+		//this.endereco = endereco;
 	}
 
 	public Integer getId_cliente() {

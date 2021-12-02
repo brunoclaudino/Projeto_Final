@@ -41,7 +41,7 @@ public class PessoaFisica extends Cliente{
 			@NotNull @Size(min = 14, max = 14) String telefone, Endereco endereco,
 			@NotNull(message = "Campo Nome Vazio") @Size(min = 3) String nome,
 			@NotNull(message = "Campo CPF Vazio") @Size(min = 11, max = 11) String cpf,
-			@NotNull(message = "Campo CPF Vazio") @Past String dataNascimento,
+			@NotNull(message = "Campo Data de Nascimento Vazio") @Past String dataNascimento,
 			@NotNull @Size(min = 3) String ocupacao) throws ParseException {
 		super(email, telefone, endereco);
 		this.nome = nome;
