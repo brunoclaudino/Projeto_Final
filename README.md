@@ -6,7 +6,7 @@ Este projeto consiste em uma API de banco digital desenvolvida para o bootcamp G
 
 A API foi construída em Java utilizando a framework Spring Boot com Maven e suas dependências para a modelagem do problema. Foi utilizado banco de dados relacional MySQL, no qual as tabelas e  relações são criadas pela aplicação em si, usando as notações fornecidas pelo Spring Boot. A aplicação foi subida para a AWS utilizando EC2. Uma função lambda foi criada para realizar o rendimento da conta dos clientes periódicamente. A organização dos diretórios e endpoints são listados mais a frente.
 
-A aplicação está disponível no [github](https://github.com/TML45/Projeto_Final) e na plataforma AWS. Uma esteira em jenkins foi usada para realizar deploy automatizado do repositório no github para a nuvem.
+O quadro Kaban do projeto é encontrado no [Trello](https://trello.com/invite/b/Xe8WKBZ4/82ca1738ea2e196b0192582c6951c74d/quadro-kanban-bugbusters). A aplicação está disponível no [github](https://github.com/TML45/Projeto_Final) e na plataforma AWS. Uma esteira em jenkins foi usada para realizar deploy automatizado do repositório no github para a nuvem.
 
 ### Organização do Diretório do Projeto
 
