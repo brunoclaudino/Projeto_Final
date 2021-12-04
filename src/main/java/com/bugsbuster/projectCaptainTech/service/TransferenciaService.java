@@ -2,6 +2,9 @@ package com.bugsbuster.projectCaptainTech.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,26 +15,23 @@ import com.bugsbuster.projectCaptainTech.repository.ContaRepository;
 import com.bugsbuster.projectCaptainTech.repository.TransferenciaRepository;
 
 @Service
-public class TransferenciaService implements InterfaceTransferenciaService {
+public class TransferenciaService{
 	@Autowired
 	TransferenciaRepository tranRepo;
 
 	@Autowired
 	ContaRepository contaRepo;
 
-	@Override
 	public Iterable<Transferencia> obterTodos() {
 		System.out.println("Consultando todas as transferências realizadas ");
 		return this.tranRepo.findAll();
 	}
 
-	@Override
 	public Iterable<Transferencia> obterPorDestino(int id) {
 		System.out.println("Consultando transferências por ID da conta destino  ... "+id);
 		return this.tranRepo.findByDestino(id);
 	}
 
-	@Override
 	public Transferencia criarTransferencia(Transferencia tran) {
 		Conta origem = contaRepo.getById(tran.getContaOrigem().getId_conta());
 		Conta destino = contaRepo.getById(tran.getContaDestino().getId_conta());
@@ -46,6 +46,7 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 				BigDecimal dest = BigDecimal.valueOf(destino.getSaldo() + tran.getValor());
 			    dest = dest.setScale(2, RoundingMode.HALF_UP);
 				destino.setSaldo(dest.doubleValue());
+				tran.setData(getDateTime());
 				contaRepo.save(origem); //postman não atualiza as tabelas de conta
 				contaRepo.save(destino);
 				return this.tranRepo.save(tran);
@@ -55,13 +56,11 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 		
 	}
 
-	@Override
 	public Iterable<Transferencia> obterPorOrigem(int id) {
 		System.out.println("Consultando transferências por ID da conta origem  ... "+id);
 		return this.tranRepo.findByOrigem(id);
 	}
 
-	@Override
 	public Iterable<Transferencia> obterPorConta(int id) {
 		System.out.println("Consultando transferências por numero de conta  ... "+id);
 		return this.tranRepo.findHistConta(id);
@@ -70,5 +69,11 @@ public class TransferenciaService implements InterfaceTransferenciaService {
 	public Iterable<Transferencia> obterHistOrdenado(int conta){
 		System.out.println("Consultando as ultimas transferências por conta. Conta pesquisada:: "+conta);
 		return this.tranRepo.findHistOrdenado(conta);
+	}
+	
+	private String getDateTime() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
 	}
 }

@@ -13,26 +13,28 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-public class PessoaFisica extends Cliente{
+@Entity                                                     // Define como entidade
+public class PessoaFisica extends Cliente{                  // Pf herda de cliente
 	
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(message = "Campo Nome Vazio")
-	@Size(min=3)
-	private String nome;
-	@NotNull(message = "Campo CPF Vazio")
-	@Size(min=11, max=11)
-	@Column(unique = true)
-	private String cpf;
-	@NotNull(message = "Campo Data de Nascimento Vazio")
-	@Past
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataNascimento;
-	@NotNull
-	@Size(min=3)
-	private String ocupacao;
+	@NotNull(message = "Campo Nome Vazio")                 // Campo não nulo. Pf deve ter um nome
+	@Size(min=3)                                           // Mínimo de 3 caracteres
+	private String nome;                                   // Armazena o nome
+	@NotNull(message = "Campo CPF Vazio")                  // Campo não nulo. Pf deve ter um cpf
+	@Size(min=11, max=11)                                  // Tamanho deve ser 11 caracteres
+	@Column(unique = true)                                 // Deve ser um atribudo único para o cliente
+	private String cpf;                                    // Armazena o CPf
+	@NotNull(message = "Campo Data de Nascimento Vazio")   // Campo não nulo. Pf deve ter data de nascimento
+	@Past                                                  // Define como uma data do passado
+	@JsonFormat(pattern = "dd/MM/yyyy")                    // Define o formato da data
+	private LocalDate dataNascimento;                      // Armazena a data de nascimento
+	@NotNull                                               // Campo não nulo. Pf deve ter uma ocupação
+	@Size(min=3)                                           // Tamanho mínimo de 3 caracteres
+	private String ocupacao;                               // Armazena a ocupação
 	
+	
+	/* Segue abaixo os construtores, getters and setters e Hashs*/
 	public PessoaFisica() {
 		super();
 	}
