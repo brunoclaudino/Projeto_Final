@@ -22,38 +22,40 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity                                                                             // Define como uma entidade
+@Inheritance(strategy = InheritanceType.JOINED)                                     // Define como a herença vai ser traduzida para o DB
 public abstract class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_cliente;
+	@Id                                                                             // Tag que define atributo como identificador de tabela
+	@GeneratedValue(strategy = GenerationType.IDENTITY)                             // Realiza a definição automática datributo id
+	private Integer id_cliente;                                                     // Atributo identificador de um cliente
 	
-	@NotNull
-	@JsonFormat( pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro = new java.sql.Date(System.currentTimeMillis());
+	@NotNull                                                                        // Define o campo como não nulo
+	@JsonFormat( pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")                 // Realiza a formatação do campo
+	@Temporal(TemporalType.TIMESTAMP)                                               // Notation usada para guardar datas
+	private Date dataCadastro = new java.sql.Date(System.currentTimeMillis());      // Coluna que irá armazenar a data de cadastro do cliente
 	
-	@NotNull
-	@Email
-	@Size(min=8)
-	@Column(unique = true)
-	private String email;
-	@NotNull
-	@Size(min=14, max=14)
-	private String telefone;
+	@NotNull                                                                        // Define como campo não nulo
+	@Email                                                                          // Notation para definir campo como email
+	@Size(min=8)                                                                    // Tamanho mínimo dado para string é 8 caracteres
+	@Column(unique = true)                                                          // Dois clientes não podem ter emails iguais
+	private String email;                                                           // Campo que guarda o email de cliente
+	@NotNull                                                                        // Define como campo não nulo
+	@Size(min=14, max=14)                                                           // Define o tamanho fixo de 14 caracteres
+	private String telefone;                                                        // Campo que armazena o numero de telefone
 	
 	
-	@JoinColumn(name="id_enderecoFk", referencedColumnName = "id_endereco")
-	@NotNull(message = "Campo Endereco vazio - Classe Cliente")
-	@OneToOne(cascade = CascadeType.ALL)
-	private Endereco endereco;
+	@JoinColumn(name="id_enderecoFk", referencedColumnName = "id_endereco")         // Campo que fará a referência a tabela endereço
+	@NotNull(message = "Campo Endereco vazio - Classe Cliente")                     // Campo não nulo. Cliente deve ter um endereço
+	@OneToOne(cascade = CascadeType.ALL)                                            // Define uma relação na tabela de 1 para 1
+	private Endereco endereco;                                                      // Campo que armazena um endereço obtido
 	
-	@NotNull
-	private boolean ativo = true;         // Deleção Lógica
+	@NotNull                                                                        // Campo não nulo. Cliente deve ter um status
+	private boolean ativo = true;                                                   // Usado para deleção lógica. Cliente não são 
+	                                                                                // apagados, somente são desativados.
 	
+	/* Segue abaixo os contrutores, getters and setters e hashs*/
 	public Cliente() {
 		super();
 	}

@@ -16,34 +16,35 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
+@Entity                                                                          // Define como uma entidade
 public class Conta implements Serializable{
 private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_conta;
+	@Id                                                                          // Atributo identificador de contas
+	@GeneratedValue(strategy = GenerationType.IDENTITY)                          // Gera id dinâmicamente
+	private Integer id_conta;                                                    // Atributo identificador dessa classe/entidade
 	
-	@NotNull(message = "Campo Numero vazio - Classe Conta")
-	private Integer numero;
+	@NotNull(message = "Campo Numero vazio - Classe Conta")                      // Campo não nulo. Uma conta deve ter um número
+	private Integer numero;                                                      // Numero da conta
 	
-	@NotNull(message = "Campo Agencia vazio - Classe Conta")
-	private static Integer agencia = 0001;
+	@NotNull(message = "Campo Agencia vazio - Classe Conta")                     // Campo não nulo. Uma conta deve ter uma agência
+	private static Integer agencia = 0001;                                       // Por ser uma fintech, todos os usuários recebem
+	                                                                             // uma única agência
+	@NotNull                                                                     // Campo não nulo. Uma conta deve ter um saldo
+	private Double saldo;                                                        // campo que armazena o saldo
 	
-	@NotNull
-	private Double saldo;
+	@NotNull                                                                     // Campo não nulo. Conta deve ter dada de abertura
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")               // Define a data de abertura
+	@Temporal(TemporalType.TIMESTAMP)                                            // Usado para a persistência de datas
+	private Date dataAbertura = new java.sql.Date(System.currentTimeMillis());   // Armazena o horário local
 	
-	@NotNull
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT-3")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataAbertura = new java.sql.Date(System.currentTimeMillis());
-	
-	@OneToOne
-	@JoinColumn(name="id_clienteFk", referencedColumnName = "id_cliente")
-	@NotNull(message = "Campo cliente vazio - Classe Conta")
-	private Cliente cliente;
+	@OneToOne                                                                    // Define relacionamento com cliente 1 para 1
+	@JoinColumn(name="id_clienteFk", referencedColumnName = "id_cliente")        // Define nome da FK e onde referencia
+	@NotNull(message = "Campo cliente vazio - Classe Conta")                     // Campo não nulo. Conta deve ter um cliente dono
+	private Cliente cliente;                                                     // Campo que recebe o cliente
 	
 	
+	/* Segue abaixo os construtores, getters and setters e Hashs*/
 	public Conta() {
 		super();
 	}

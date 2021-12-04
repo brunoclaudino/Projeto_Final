@@ -11,33 +11,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
+
+@Entity                                                                      // Define como entidade
 public class Transferencia implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id                                                                      // Define como identificador da classe/entidade
+	@GeneratedValue(strategy = GenerationType.IDENTITY)                      // Gera o id dinâmicamente
 	private int id_transferencia;
 	
-	@ManyToOne
-	@JoinColumn(name = "conta_origem", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")
-	private Conta contaOrigem;
+	@ManyToOne                                                               // Define um relacionamento 1 para N
+	@JoinColumn(name = "conta_origem", referencedColumnName = "id_conta")    // Define atributo FK e onde referência
+	@NotNull(message = "Campo contaOrigem vazio - Classe Transferencia")     // Campo não nulo. Transferência deve ter
+	private Conta contaOrigem;                                               // uma conta de origem (onde saí o dinheiro)
 	
-	@ManyToOne
-	@JoinColumn(name = "conta_destino", referencedColumnName = "id_conta")
-	@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")
-	private Conta contaDestino;
+	@ManyToOne                                                               // Define um relacionamento 1 para N
+	@JoinColumn(name = "conta_destino", referencedColumnName = "id_conta")   // Define atributo FK e onde referência
+	@NotNull(message = "Campo contaDestino vazio - Classe Transferencia")    // Campo não nulo. Transferencia deve ter
+	private Conta contaDestino;                                              // uma conta de destino (onde entra o dinheiro)
 	
-	@NotNull(message = "Campo valor vazio - Classe Transferencia")
-	private double valor;
+	@NotNull(message = "Campo valor vazio - Classe Transferencia")           // Campo não nulo. Transferência deve ter um valor
+	private double valor;                                                    // Armazena o valor da transferência
 	
-	@NotNull(message = "Campo data vazio - Classe Transferencia")
-	private LocalDate data;
+	@NotNull(message = "Campo data vazio - Classe Transferencia")            // Campo não nulo. Transferência deve ter uma data 
+	private LocalDate data;                                                  // Armazena a data
 	
+	/* Segue abaixo os construtores, getters and setters e Hashs*/
 	public Transferencia() {
 		super();
 	}
@@ -47,7 +52,7 @@ public class Transferencia implements Serializable{
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
-		setData(data);
+		//setData(data);
 	}
 
 	public int getId() {
@@ -83,7 +88,7 @@ public class Transferencia implements Serializable{
 	}
 
 	public void setData(String data) {
-		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		this.data = LocalDate.parse(data, date);
 	}
 

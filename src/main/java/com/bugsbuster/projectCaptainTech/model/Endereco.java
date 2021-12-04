@@ -12,34 +12,36 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity                                                          // Define como entidade
 public class Endereco implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_endereco;
+	@Id                                                          // Define como atributo identificador da classe
+	@GeneratedValue(strategy = GenerationType.IDENTITY)          // Gera o id dinâmicamente no estili IDENTITY
+	private Integer id_endereco;                                 // Atributo identificador da classe/entidade
 	
-	@NotNull(message = "Campo Logradouro Vazio")
-	@Size(min=1)
-	private String logradouro;
+	@NotNull(message = "Campo Logradouro Vazio")                 // Campo não nulo. Endereço deve ter um logradouro
+	@Size(min=1)                                                 // Define o mínimo como 1 caractere
+	private String logradouro;                                   // Armazena o logradouro
 	
-	private Integer numero;
+	private Integer numero;                                      // Armazena o número do endereço
 	
-	private String bairro;
+	private String bairro;                                       // Armazena o bairro do endereço
 	
-	@NotNull(message = "Campo Cidade Vazio")
-	@Size(min=3)
-	private String cidade;
+	@NotNull(message = "Campo Cidade Vazio")                     // Campo não nulo. Endereço deve ter uma cidade
+	@Size(min=3)                                                 // Tamanho mínimo de 3 caracteres
+	private String cidade;                                       // Armazena o nome da cidade
 	
-	@NotNull(message = "Campo Estado Vazio")
-	@Enumerated(EnumType.STRING)
-	private EnumEstado estado;
+	@NotNull(message = "Campo Estado Vazio")                     // Campo não nulo. Endereço deve ter um estado
+	@Enumerated(EnumType.STRING)                                 // Campo do tipo Enum
+	private EnumEstado estado;                                   // Define o tipo como um Enum com as siglas dos estados
 	
-	@NotNull(message = "Campo CEP Vazio")
-	@Size(min=8)
-	private String cep;
+	@NotNull(message = "Campo CEP Vazio")                        // Campo não nulo. Endereço deve ter um cep
+	@Size(min=8)                                                 // Mínimo de 8 caracteres para o cep
+	private String cep;                                          // Armazena o cep
 	
+	
+	/* Segue os construtores, Getters ans Setters e Hashs*/
 	public Endereco() {
 		super();
 	}
