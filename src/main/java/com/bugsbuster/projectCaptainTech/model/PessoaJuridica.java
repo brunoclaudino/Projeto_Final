@@ -13,31 +13,32 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-public class PessoaJuridica extends Cliente{
+@Entity                                                // Define classe como endidade
+public class PessoaJuridica extends Cliente{           // Classe herda de cliente
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull(message = "Campo Razão Social Vazio")
-	@Size(min=3)
-	private String razaoSocial;
+	@NotNull(message = "Campo Razão Social Vazio")     // Campo não nulo. Pj deve ter uma razao social
+	@Size(min=3)                                       // Tamanho mínimo de 3 caracteres
+	private String razaoSocial;                        // Armazena a razão social
 	
-	@Size(min=5, max=50)
-	private String nomeFantasia;
+	@Size(min=5, max=50)                               // Define tamanho de 5 a 50 caracters
+	private String nomeFantasia;                       // Armazena o nome fantasia
 	
-	@NotNull(message = "Campo CNPJ Vazio")
-	@Size(min=14, max=14)
-	@Column(unique =  true)
-	private String cnpj;
+	@NotNull(message = "Campo CNPJ Vazio")             // Campo não nulo. Pj deve ter cnpj
+	@Size(min=14, max=14)                              // Define o tamanho como 14 caracteres
+	@Column(unique =  true)                            // Define como campo único
+	private String cnpj;                               // Armazena o cnpj
 	
-	@Size(min=3)
-	@Column(unique = true)
-	private String inscricaoEstadual;
+	@Size(min=3)                                       // Tamanho mínimo de 3 caracters
+	@Column(unique = true)                             // Define como atributo único na tabela
+	private String inscricaoEstadual;                  // Armazena inscrição estadual
 	
-	@NotNull(message = "Campo Data Vazio")
-	@Past
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataFundacao;
+	@NotNull(message = "Campo Data Vazio")             // Campo não nulo. Pj deve ter dada de fundação
+	@Past                                              // Define como uma data do passado
+	@JsonFormat(pattern = "dd/MM/yyyy")                // Formata a data como desejado
+	private LocalDate dataFundacao;                    // Armazena data de fundação
 	
+	/* Segue abaixo os construtores, Getters and Setters e Hashs*/
 	public PessoaJuridica() {
 		super();
 	}
