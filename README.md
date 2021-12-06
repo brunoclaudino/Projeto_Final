@@ -64,11 +64,19 @@ O quadro Kanban do projeto é encontrado no [Trello](https://trello.com/invite/b
 ​   ├── mvnw.cmd
 ​   └── pom.xml                                                          // Arquivo pom com as configurações do Maven
 
- ```
+```
 
 ### Diagrama de Banco de Dados
 
+![](https://github.com/TML45/Projeto_Final/blob/developer/RelationalDiagram.png?raw=true)
+
 ### Diagrama de Classes
+
+![](https://github.com/TML45/Projeto_Final/blob/developer/ClassDiagram.png?raw=true)
+
+### Diagrama de Objeto
+
+![](https://github.com/TML45/Projeto_Final/blob/developer/ObjectDiagram.png?raw=true)
 
 ### Endpoints da Aplicação
 
