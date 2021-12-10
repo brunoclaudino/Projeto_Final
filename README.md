@@ -14,55 +14,53 @@ O quadro Kanban do projeto é encontrado no [Trello](https://trello.com/invite/b
 ├── Projeto_Final                                                        // Diretório Principal
     ├── src                                                              // Diretório com os códigos fontes
         ├── main
-        	└── java/com/bugsbuster/projectCaptainTech/                  // Diretório com os arquivos java
+            └── java/com/bugsbuster/projectCaptainTech/                  // Diretório com os arquivos java
         	    ├── config                                               // Pasta de arquivos de configurações
-​				    └── AwsSnsConfig.java                                // Configuração do Bean para executar o SNS da amazon
-​			    ├── controller                                           // Contém as classes de controle da aplicação (endpoints)
-​        		    ├── ContaController.java                             // Endpoints para contas do banco
-​				    ├── PessoaFisicaController.java                      // Endpoints para clientes pessoa física
-​                   ├── PessoaJuridicaController.java                    // Endpoints para clientes pessoa jurídica
-​                   └── TransferenciaController.java                     // Endpoints para transferência
+​                        └── AwsSnsConfig.java                                // Configuração do Bean para executar o SNS da amazon
+​                    ├── controller                                           // Contém as classes de controle da aplicação (endpoints)
+​                        ├── ContaController.java                             // Endpoints para contas do banco
+​                        ├── PessoaFisicaController.java                      // Endpoints para clientes pessoa física
+​                        ├── PessoaJuridicaController.java                    // Endpoints para clientes pessoa jurídica
+​                        └── TransferenciaController.java                     // Endpoints para transferência
 ​        	    ├── doc                                                  // Pasta de documentação do swagger
-​			        └── SwaggerConfig.java                               // Configurações para gerar a documentação do swagger
-​			    ├── model                                                // Contém as classes de modelagem do sistema
-​        		    ├── Cliente.java                                     // Classe super abstrada para os tipos de cliente
-​                   ├── Conta.java                                       // Classe que modela uma conta
-​                   ├── Endereco.java                                    // Classe que modela os endereços dos clientes
-​                   ├── EnumEstado.java                                  // Enumera as siglas dos estados para usar no endereço
-​                   ├── PessoaFisica.java                                // Classe especialização de cliente para pessoa física
-​                   ├── PessoaJuridica.java                              // Classe especialização de cliente para pessoa jurídica
-​                   └── Transferencia.java                               // Classe que modela as transferências entre contas
+​                        └── SwaggerConfig.java                               // Configurações para gerar a documentação do swagger
+​                    ├── model                                                // Contém as classes de modelagem do sistema
+​                        ├── Cliente.java                                     // Classe super abstrada para os tipos de cliente
+​                        ├── Conta.java                                       // Classe que modela uma conta
+​                        ├── Endereco.java                                    // Classe que modela os endereços dos clientes
+​                        ├── EnumEstado.java                                  // Enumera as siglas dos estados para usar no endereço
+​                        ├── PessoaFisica.java                                // Classe especialização de cliente para pessoa física
+​                        ├── PessoaJuridica.java                              // Classe especialização de cliente para pessoa jurídica
+​                        └── Transferencia.java                               // Classe que modela as transferências entre contas
 ​        	    ├── repository                                           // Diretório que contem as classes de conexão com o MySQL
-​        		    ├── ContaRepository.java                             // Repositório das contas
-​                   ├── EnderecoRepository.java                          // Repositório dos Endereços
-​                   ├── PessoaFisicaRepository.java                      // Repositório de pessoa Física
-​                   ├── PessoaJuridicaRepository.java                    // Repositório de pessoa jurídica
-​                   └── TransferenciaRepository.java                     // Repositórios das transferências
-​        		├── service                                              // Implementações de comportamento em meio a solicitações
-                    ├── exception                                        // Pacote de tratamento de exceções customizados
-                        ├── AppExceptionHandler.java
-                        └── EntityNotFoundException.java
-​        		    ├── ContaService.Java                                // Comportamento das solicitações de conta
-​				    ├── EnderecoService.java                             // Comportamento das solicitações de Endereço
-​				    ├── InterfacePessoaFisica.java                       // Interface de omportamento das solicitações de pessoa física
-​                   ├── InterfaceTransferenciaService.java               // Interface de comportamento de transferência
-​                   ├── PessoaFisicaServiceImpl.java                     // Comportamento das solicitações de pessoa física
-​                   ├── PessoaJuridicaServiceImpl.java                   // Comportamento das solicitações de pessoa jurídica
-​                   └── TransferenciaService.java                        // Comportamento das solicitações de Transferência
-                └── ProjectCaptainTechApplicationTests.java              // Classe que contem a main
-​        	└── resources
-​        			└── application.properties                           // Contém as configurações de BD da aplicação
-​       └── test/java/com/bugsbuster/projectCap                          // Caminho para códigos de teste
-​        	└── ProjectCaptainTechApplicationTests.java         	     // teste do classe principal
-​   ├── target
-​   ├── .gitattributes
-​   ├── BlueBank-Diagram.asta
-​   ├── BlueBank-mysql.mwb
-​   ├── DB.sql                                                           // Script para popular o banco de dados
-​	├── READ.md                                                          // ---> Você está aqui
-​   ├── mvnw
-​   ├── mvnw.cmd
-​   └── pom.xml                                                          // Arquivo pom com as configurações do Maven
+​                        ├── ContaRepository.java                             // Repositório das contas
+​                        ├── EnderecoRepository.java                          // Repositório dos Endereços
+​                        ├── PessoaFisicaRepository.java                      // Repositório de pessoa Física
+​                        ├── PessoaJuridicaRepository.java                    // Repositório de pessoa jurídica
+​                        └── TransferenciaRepository.java                     // Repositórios das transferências
+​                    ├── service                                              // Implementações de comportamento em meio a solicitações
+                         ├── exception                                        // Pacote de tratamento de exceções customizados
+                             ├── AppExceptionHandler.java
+                             └── EntityNotFoundException.java
+                         ├── ContaService.Java                                // Comportamento das solicitações de conta
+                         ├── EnderecoService.java                             // Comportamento das solicitações de Endereço
+                         ├── PessoaFisicaServiceImpl.java                     // Comportamento das solicitações de pessoa física
+                         ├── PessoaJuridicaServiceImpl.java                   // Comportamento das solicitações de pessoa jurídica
+                         └── TransferenciaService.java                        // Comportamento das solicitações de Transferência
+                     └── ProjectCaptainTechApplicationTests.java              // Classe que contem a main
+            └── resources
+                ├── application.properties                                    // Contém as configurações de BD da aplicação
+        └── test/java/com/bugsbuster/projectCap                               // Caminho para códigos de teste
+            └── ProjectCaptainTechApplicationTests.java         	          // teste do classe principal
+   ├── target
+   ├── .gitattributes
+   ├── BlueBank-Diagram.asta
+   ├── BlueBank-mysql.mwb
+   ├── DB.sql                                                                // Script para popular o banco de dados
+   ├── READ.md                                                               // ---> Você está aqui
+   ├── mvnw
+   ├── mvnw.cmd
+   └── pom.xml                                                               // Arquivo pom com as configurações do Maven
 
 ```
 
