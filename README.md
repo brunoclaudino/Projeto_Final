@@ -78,7 +78,41 @@ O quadro Kanban do projeto é encontrado no [Trello](https://trello.com/invite/b
 
 ### Endpoints da Aplicação
 
-* Os endpoints da aplicação são listados pela documentação do swagger que é gerada e se encontra no projeto.
+```
+Contas
+  ├── GET "/contas" -> Retorna todas as contas
+  └── GET "/contas/{numero} -> Retorna uma conta a partir do número
+Pessoa Física
+  ├── GET "/clientePF" -> Retorna todos os clientes pessoa física
+  ├── GET "/clientePF/{id}" -> Retorna um cliente PF pelo id
+  ├── GET "/clientePF/cpf/{cpf}" -> Retorna um cliente PF pelo cpf
+  ├── GET "/clientePF/nome/{nome}" -> Retorna clientes em que o nome contenha o que foi passado
+  ├── GET "/clientePF/ocupacao/{ocupacao}" -> Retorna clientes PF por ocupação
+  ├── GET "/clientePF/telefone/{telefone}" -> Retorna cliente pf pelo telefone
+  ├── POST "/clientePF" -> Cria um cliente pessoa física passado por json
+  ├── POST "/clientePF/mensagem" -> Envia uma mensagem  para os clientes subscritos no email
+  ├── PUT "/clientePF/atualizar" -> Atualiza os dados de uma cliente pessoa física
+  ├── PUT "/clientePF/desativar/{id}" -> Desativa o cliente de id passado
+Pessoa Jurídica
+  ├── GET "/clientePJ" -> Retorna todos os clientes PJ
+  ├── GET "/clientePJ/{id}" -> Retorna um cliente PJ pelo id
+  ├── GET "/clientePJ/cnpj/{cnpj}" -> Retorna um cliente PJ pelo cnpj
+  ├── GET "/clientePJ/inscricao/{inscricao}" -> Retorna cliente PJ pela inscrição estadual
+  ├── GET "/clientePJ/nf/{nf}" -> Retorna clientes PJ em que o nome fantasia contenha a string passada
+  ├── GET "/clientePJ/razao/{razao}" -> Retorna cliente PJ pela razão social
+  ├── GET "/clientePJ/telefone/{telefone}" -> Retorna cliente PJ pelo número de telefone
+  ├── POST "/clientePJ" -> Cria um cliente PJ passado por Json
+  ├── POST "/clientePJ/mensagem" -> Envia uma mensagem para os clientes subscritos no email
+  ├── PUT "/clientePJ/atualizar" -> Atualiza um cliente PJ
+  ├── PUT "/clientePJ/desativar/{id}" -> Desativa um cliente PJ
+Transferencias
+  ├── GET "/transferencias" -> Retorna todas as transferências do Banco
+  ├── GET "/transferencias/destino/{destino}" -> Retorna transferências pela conta de destino passada (de onde entra dinheiro)
+  ├── GET "/transferencias/historico/{conta}" -> Retorna todas as transferências de uma conta
+  ├── GET "/transferencias/ordenadas/{conta}" -> Retorna últimas 3 transferências ordenadas
+  ├── GET "/transferencias/origem/{origem}" -> Retornas tranferência pela conta de origem passada (de onde saí dinheiro)
+  ├── POST "/transferencias" -> Adiciona novas transferências
+```
 
 ## **Grupo de Desenvolvedores BugBusters:**
 
