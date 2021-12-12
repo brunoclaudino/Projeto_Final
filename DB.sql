@@ -14,7 +14,6 @@ values
     ('Jocely Dantas', '62042-120','Sobral', 'CE', 'Rua Santos Medeiros', 200),
     ('Vale do Sol', '59143-265','Parnamirim', 'RN', 'R. Dr. Átila Paiva', 304),
     ('Distrito Industrial', '58411-170','Campina Grande', 'PB', 'Av. João Wallig', 1187);
-select * from endereco;
 
 insert into cliente ( ativo, data_cadastro,  email, telefone, id_endereco_fk)
 values
@@ -46,7 +45,6 @@ values
     ('15632180265', '1997-05-16','Pedro Guimarães da Silva', 'Jornalista', 9),
     ('04581230497', '1992-02-13','Carlos Gama Vieira', 'Marceneiro', 13),
     ('98563210054', '1991-04-30','Flavia Costa Vieira', 'Professora', 15);
-select * from pessoa_fisica;
     
 insert into	pessoa_juridica( cnpj, data_fundacao,  inscricao_estadual, nome_fantasia, razao_social, id_cliente)
 values
@@ -58,7 +56,6 @@ values
     ('76910302000138', '2009-05-12','875681049', 'Lava Jato Alto Brilho', 'Alto Brilho Limpeza ME', 12),
     ('24635702000116', '2015-11-27','156324750', 'Clinica Bela', 'Julia Beleza LTDA', 14),
     ('12036620000171', '2004-07-05','234568102', 'Indústria Tess', 'Tess Industria LTDA', 16);
-select * from pessoa_juridica;
 
 insert into conta( data_abertura, numero, saldo, id_cliente_fk)
 values
@@ -78,6 +75,4 @@ values
     ('2017-09-27 14:42:19.768000', 30127,304.30, 14),
     ('2001-03-10 14:42:19.768000', 20334,2087.22, 15),
     ('1999-07-17 14:42:19.768000', 10872,30782.05, 16);
-select * from conta;
     
-select * from transferencia;
