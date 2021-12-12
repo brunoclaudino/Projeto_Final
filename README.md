@@ -1,5 +1,7 @@
 # BlueBank  API by BugBusters
 
+![](https://github.com/TML45/Projeto_Final/blob/developer/BlueBank.png?raw=true)
+
 ## Sobre o Projeto
 
 Este projeto consiste em uma API de banco digital desenvolvida para o bootcamp Gama Pan Academy, uma parceria da Gama como o Banco Pan.
@@ -92,7 +94,7 @@ Pessoa Física
   ├── POST "/clientePF" -> Cria um cliente pessoa física passado por json
   ├── POST "/clientePF/mensagem" -> Envia uma mensagem  para os clientes subscritos no email
   ├── PUT "/clientePF/atualizar" -> Atualiza os dados de uma cliente pessoa física
-  ├── PUT "/clientePF/desativar/{id}" -> Desativa o cliente de id passado
+  └── PUT "/clientePF/desativar/{id}" -> Desativa o cliente de id passado
 Pessoa Jurídica
   ├── GET "/clientePJ" -> Retorna todos os clientes PJ
   ├── GET "/clientePJ/{id}" -> Retorna um cliente PJ pelo id
@@ -104,15 +106,17 @@ Pessoa Jurídica
   ├── POST "/clientePJ" -> Cria um cliente PJ passado por Json
   ├── POST "/clientePJ/mensagem" -> Envia uma mensagem para os clientes subscritos no email
   ├── PUT "/clientePJ/atualizar" -> Atualiza um cliente PJ
-  ├── PUT "/clientePJ/desativar/{id}" -> Desativa um cliente PJ
+  └── PUT "/clientePJ/desativar/{id}" -> Desativa um cliente PJ
 Transferencias
   ├── GET "/transferencias" -> Retorna todas as transferências do Banco
   ├── GET "/transferencias/destino/{destino}" -> Retorna transferências pela conta de destino passada (de onde entra dinheiro)
   ├── GET "/transferencias/historico/{conta}" -> Retorna todas as transferências de uma conta
   ├── GET "/transferencias/ordenadas/{conta}" -> Retorna últimas 3 transferências ordenadas
   ├── GET "/transferencias/origem/{origem}" -> Retornas tranferência pela conta de origem passada (de onde saí dinheiro)
-  ├── POST "/transferencias" -> Adiciona novas transferências
+  └── POST "/transferencias" -> Adiciona novas transferências
 ```
+
+Também é possível ver a documentação de Endpoints no swagger, e acessando o endpoint "/swagger-ui.html".
 
 ## **Grupo de Desenvolvedores BugBusters:**
 
@@ -122,4 +126,10 @@ Transferencias
 |TechLead                                                              |  Eng. Dados                                                            |                                                     Developer         |           Developer                                                   |           Eng. Cloud                                                   |
 
 **Obs: ** Clique nas imagens para os respectivos LinkedIns.
+
+
+
+#### Turma 1 - Squad 5 - Bugbusters
+
+<a href="https://www.linkedin.com/in/brunoclaudino/" target="blank"><img style="background-color: #abc" align="center" src="https://github.com/TML45/Projeto_Final/blob/developer/BugBusters.png?raw=true" height="200" width="200" /></a>
 
