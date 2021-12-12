@@ -20,8 +20,8 @@ public class AwsSnsConfig {
 		return (AmazonSNSClient) AmazonSNSClientBuilder.standard().           // Retornar um Amazon SNS Client Builder
 				withRegion(Regions.US_EAST_2)                                 // Define a região do serviço (usamos Ohio leste US)
 				.withCredentials(new AWSStaticCredentialsProvider(            // Define as credenciais
-						new BasicAWSCredentials("AKIA6BZRT7L43R62EAHD",       // Passa o Id da chave de acesso e a chave
-						"cMqBx+8WDolTEmt7CBYND/SeY7+YYQ923gAPvDNC")))
+						new BasicAWSCredentials("AKIA6BZRT7L4TNQKCKTR",       // Passa o Id da chave de acesso e a chave
+						"nHKVgvnkW7AZ8suitvL2EaCVwcaBXXOpSdAJCU8l")))
 				.build();
 	}
 }
